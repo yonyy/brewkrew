@@ -1,0 +1,9 @@
+{
+	"google" : {
+		"api-key" : "AIzaSyAKZd_iJrSr8v9dGaz7vHzlmqQ3gumQCew",
+		"spreadsheet-id" : "1KifH9vfGuv99b_5Ksr3nEQQM1MFNt2A4d0-_snmPUMA"
+	},
+	"yelp" : {
+		"api-key" : "-Xs5n6MHPfhsznrWr1ZFDRmfGivGZc-i59_P6xWnJsELBc9E2eIGEyZBein26kDEFKCR4tR7uZLAiGSGOUEOP1kf6kv3ndkwuwHKnFU2wSvJRBCrHdl0Xwtu5NPjWnYx"
+	}
+}

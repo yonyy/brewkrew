@@ -2,7 +2,7 @@
   "name": "brewkrew",
   "version": "1.0.0",
   "description": "Just a group of friends conquering San Diego one brewery at a time",
-  "main": "index.js",
+  "main": "index.html",
   "repository": "https://github.com/yonyy/brewkrew",
   "author": "Yonatan Perez",
   "license": "MIT",

@@ -1,0 +1,40 @@
+.bk-nav-container {
+	bottom: 0px;
+	position: relative;
+
+	.bk-nav-control {
+		position: relative;
+
+		& + .bk-nav {
+			position: absolute;
+
+			&.bk-nav-hidden {
+				display: none;
+			}
+
+			.bk-nav-list {
+				display: flex;
+				flex-direction: column;
+				background-color: $nav-list-background-color;
+				padding: 0px;
+				width: $bk-nav-list-width;
+				box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+				margin: 0;
+			
+				.bk-nav-list-item {
+					height: 35px;
+					display: flex;
+
+					&:last-child {
+						border-bottom: none;
+					}
+
+					a {
+						padding: 10px;
+						width: 100%;
+					}
+				}
+			}
+		}
+	}
+}

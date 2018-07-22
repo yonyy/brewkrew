@@ -1,0 +1,13 @@
+.bk-link {
+	color: $base-color;
+	cursor: pointer;
+	transition: all .3s ease;
+
+	&:hover, &:focus, &:active {
+		color: $focus-color;
+
+		.bk-icon {
+			color: $focus-color;
+		}
+	}
+}

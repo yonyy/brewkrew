@@ -46,9 +46,7 @@ class GoogleMarkers {
 
 			marker.setZIndex(1);
 
-			setTimeout(() => {
-				marker.setMap(map);
-			}, index * 50);
+			marker.setMap(map);
 
 			return marker;
 		});

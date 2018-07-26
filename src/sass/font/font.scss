@@ -1,0 +1,12 @@
+@import '../core/variables';
+
+/* Set global font-family */
+@font-face {
+    font-family: NotoSans;
+    src: url(NotoSans-Regular.ttf);
+}
+
+* {
+    font-family: 'NotoSans', sans-serif;
+    color: $base-color
+}

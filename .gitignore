@@ -3,8 +3,8 @@ node_modules/
 **/.DS_Store
 **/*.map
 **/.cache
-brewkrew/db/client_secret.json
-brewkrew/db/credentials.json
-brewkrew/db/api-key.json
-brewkrew/db/breweries.csv
+db/client_secret.json
+db/credentials.json
+db/api-key.json
+db/breweries.csv
 dist

@@ -13,7 +13,7 @@
 
 			&.bk-search-expand-animation {
 				width: 0px;
-				transition: width .3s ease;
+				transition: $bk-transition
 			}
 
 			&.bk-search-expanded {
@@ -42,7 +42,7 @@
 
 			.bk-search-result {
 				padding: 10px 10px 0px 10px;
-				transition: all .3s ease;
+				transition: $bk-transition;
 
 				&:hover {
 					background-color: $base-hover-color;
@@ -61,5 +61,17 @@
 				}
 			}
 		}
+	}
+}
+
+
+@media all and (max-width: 480px) {
+	.bk-search-container input {
+		width: 100px;
+		margin: 0px 0px 0px 5px;
+
+		&.bk-search-expanded {
+			width: 100px;
+		}		
 	}
 }

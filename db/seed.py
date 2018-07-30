@@ -7,38 +7,6 @@ import csv
 import json
 import requests
 
-def read():
-	# Setup the Sheets API
-	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
-	store = file.Storage('credentials.json')
-	creds = store.get()
-	if not creds or creds.invalid:
-		flow = client.flow_from_clientsecrets('client_secret.json', SCOPES)
-		creds = tools.run_flow(flow, store)
-	service = build('sheets', 'v4', http=creds.authorize(Http()))
-
-	SPREADSHEET_ID = ''
-	# Call the Sheets API
-	with open('api-key.json', mode='r') as api:
-		keys = json.load(api)
-		SPREADSHEET_ID = keys['google']['spreadsheet-id']
-	
-	RANGE_NAME = 'Data!A1:C152'
-	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,range=RANGE_NAME).execute()
-
-	print('Getting updates')
-	values = result.get('values', [])
-	decoded = [[col.encode('utf-8') for col in row] for row in values]
-	if not decoded:
-		print('No data found.')
-	else:
-		with open('breweries.csv', 'wb') as breweries:
-			print('Saving updates')
-			writer = csv.writer(breweries)
-			writer.writerows(decoded)
-	seed()
-
-
 def getLatAndLong(address):
 	URL = 'https://maps.googleapis.com/maps/api/geocode/json'
 	API_KEY = ''
@@ -122,5 +90,36 @@ def seed():
 			print(e)
 	
 	print('Done')
+
+def read():
+	# Setup the Sheets API
+	SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
+	store = file.Storage('credentials.json')
+	creds = store.get()
+	if not creds or creds.invalid:
+		flow = client.flow_from_clientsecrets('client_secret.json', SCOPES)
+		creds = tools.run_flow(flow, store)
+	service = build('sheets', 'v4', http=creds.authorize(Http()))
+
+	SPREADSHEET_ID = ''
+	# Call the Sheets API
+	with open('api-key.json', mode='r') as api:
+		keys = json.load(api)
+		SPREADSHEET_ID = keys['google']['spreadsheet-id']
+	
+	RANGE_NAME = 'Data!A1:C152'
+	result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,range=RANGE_NAME).execute()
+
+	print('Getting updates')
+	values = result.get('values', [])
+	decoded = [[col.encode('utf-8') for col in row] for row in values]
+	if not decoded:
+		print('No data found.')
+	else:
+		with open('breweries.csv', 'wb') as breweries:
+			print('Saving updates')
+			writer = csv.writer(breweries)
+			writer.writerows(decoded)
+	seed()
 
 read()

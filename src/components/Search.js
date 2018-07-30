@@ -31,7 +31,8 @@ class Search extends React.PureComponent {
 					</button>
 					<input id='brewerySearch' tabIndex={tabIndex} onChange={this._onChange} value={this.props.value}
 						className={bkSearchClass} type='text'
-						placeholder=':visited' />
+						placeholder=':visited'
+						aria-label='Type to filter breweries' />
 				</div>
 			</div>
 		);

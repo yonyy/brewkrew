@@ -9,7 +9,7 @@
 
 		.bk-card-container {
 			width: 20%;
-			height: 200px;
+			height: $bk-card-container-height;
 			margin: 0;
 
 			.bk-card {
@@ -24,7 +24,7 @@
 				cursor: pointer;
 				box-sizing: border-box;
 				text-align: center;
-				transition: all .3s ease;
+				transition: $bk-transition;
 
 				&:hover, &:focus, &:active {
 					background-color: $base-hover-color;
@@ -99,6 +99,31 @@
 
 		.bk-control-forward {
 			margin-left: 5px;
+		}
+	}
+}
+
+
+@media all and (max-width: 480px) {
+	.bk-cards-container {
+		padding: 5px;
+		.bk-cards-row {
+			padding: 5px;
+			.bk-card-container {
+				width: 50%;
+				height: 100px;
+	
+				.bk-card {
+					padding: 5px;
+					font-size: 0.5em;
+
+					.bk-card-info {
+						p {
+							margin-bottom: 1px;
+						}
+					}
+				}
+			}
 		}
 	}
 }

@@ -54,3 +54,30 @@
 		height: 500px;
 	}
 }
+
+
+@media all and (max-width: 480px) {
+	.bk-heading-container {
+		.bk-heading {
+			.bk-heading-item {
+				&:first-child {
+					margin: 0px 0px 0px 10px
+				}
+	
+				&:last-child {
+					margin: 0px 10px 0px 0px;
+				}
+			}
+		}
+
+		+ .bk-sections-container {
+			top: 75px;
+		}
+	}
+
+	.bk-sections-container {	
+		.bk-section:nth-child(2) {
+			height: 600px;
+		}
+	}
+}

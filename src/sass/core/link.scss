@@ -1,7 +1,7 @@
 .bk-link {
 	color: $base-color;
 	cursor: pointer;
-	transition: all .3s ease;
+	transition: $bk-transition;
 
 	&:hover, &:focus, &:active {
 		color: $focus-color;

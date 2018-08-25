@@ -9,7 +9,7 @@ class BreweryCards extends React.Component {
 
 	render() {
 		return (
-			<div className='bk-cards-container dddsdsdsd'>
+			<div className='bk-cards-container'>
 				<div className='bk-cards-row'>
 					{
 						this.props.breweries.map((brewery) => {

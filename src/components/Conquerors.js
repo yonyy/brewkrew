@@ -22,10 +22,15 @@ ConquerorImage.propTypes = {
 };
 
 const Conqueror = ({ conqueror }) => {
+	const initials = (name) => {
+		return name.split(' ')
+					.reduce((str, name) => str + name[0].toUpperCase(), '');
+	}
+
 	return (
 		<div className='bk-conqueror-container'>
 			<div className='bk-conqueror-img-container'>
-				<ConquerorImage url={conqueror.backgroundUrl} initials={conqueror.initials}	/>		
+				<ConquerorImage url={conqueror.backgroundUrl} initials={initials(conqueror.name)} />		
 			</div>
 			<div className='bk-conqueror-name'>
 				<p>{ conqueror.name }</p>

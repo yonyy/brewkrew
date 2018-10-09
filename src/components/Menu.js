@@ -73,7 +73,7 @@ class Menu extends React.PureComponent {
 							<a className='bk-link' href='#conquerors' onClick={this.smoothScroll}>The Krew</a>
 						</li>
 						<li className='bk-nav-list-item' role='menuitem'>
-							<a className='bk-link' href='https://github.com/yonyy/yonyy.github.io'>Curious? <i aria-hidden='true' className='bk-icon fas fa-code'></i></a>
+							<a className='bk-link' href='https://github.com/yonyy/brewkrew'>Curious? <i aria-hidden='true' className='bk-icon fas fa-code'></i></a>
 						</li>
 					</ul>
 				</nav>

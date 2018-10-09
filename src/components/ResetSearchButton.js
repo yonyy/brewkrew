@@ -8,10 +8,9 @@ class ResetSearchButton extends React.PureComponent {
 
 	render() {
 		const { onClick } = this.props;
-		const label = 'Reset search';
 
 		return (
-			<button aria-label={label} className='bk-button bk-button-icon' onClick={onClick}>
+			<button aria-label='Clear search text' className='bk-button bk-button-icon' onClick={onClick}>
 				<i aria-hidden='true' className='fas fa-undo bk-icon'></i>
 			</button>
 		);

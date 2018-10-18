@@ -41,7 +41,7 @@
 
 	.bk-down-link {
 		border-radius: 25px;
-		background-color: $header-background-color;
+		background-color: $base-background-color;
 		justify-content: center;
 		flex-direction: row;
 		display: flex;	
@@ -71,7 +71,7 @@
 
 	&:hover, &:active, &:focus {
 		background-color: $focus-color;
-		color: $header-background-color;
+		color: $base-background-color;
 	}
 }
 

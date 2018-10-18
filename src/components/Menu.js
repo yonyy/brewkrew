@@ -75,6 +75,9 @@ class Menu extends React.PureComponent {
 						<li className='bk-nav-list-item' role='menuitem'>
 							<a className='bk-link' href='https://github.com/yonyy/brewkrew'>Curious? <i aria-hidden='true' className='bk-icon fas fa-code'></i></a>
 						</li>
+						<li className='bk-nav-list-item' role='menuitem'>
+							<a className='bk-link' href='#'>Dark</a>
+						</li>
 					</ul>
 				</nav>
 			</div>

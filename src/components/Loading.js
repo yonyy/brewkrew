@@ -10,22 +10,18 @@ class Loading extends React.PureComponent {
 		if (this.props.loading)
 			return (
 				<div className={`bk-loading bk-loading-${this.props.size}`}>
-					<i className='fas fa-spinner fa-spin'></i>
+					<i className="fas fa-spinner fa-spin" />
 				</div>
 			);
-		
-		return (
-			<React.Fragment>
-				{this.props.children}
-			</React.Fragment>
-		);
+
+		return <React.Fragment>{this.props.children}</React.Fragment>;
 	}
 }
 
 Loading.propTypes = {
 	loading: PropTypes.bool,
 	size: PropTypes.string,
-	children: PropTypes.array.isRequired
+	children: PropTypes.array.isRequired,
 };
 
 Loading.defaultProps = {

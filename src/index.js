@@ -2,35 +2,25 @@ import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
-import BrewKrewContainer from './components/BrewKrewContainer';
-import ErrorBoundary from './components/ErrorBoundary';
+import BrewKrew from './components/BrewKrew';
+import reducers, { initialState } from './reducers';
 
-import style from './sass/main.scss';
-
-class BrewKrew extends React.Component {
-	render() {
-		if (google)
-			return (<BrewKrewContainer google={google}/>);
-
-		return (<div></div>);
-	}
-}
-
-class BrewKrewErrorBoundary extends React.Component {
-	render() {
-		return (
-			<ErrorBoundary>
-				<BrewKrew />
-			</ErrorBoundary>
-		);
-	}
-}
-
-BrewKrewErrorBoundary.style = style;
+const store = createStore(
+	reducers,
+	initialState,
+	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 function render() {
-	ReactDOM.render(<BrewKrewErrorBoundary />, document.getElementById('root'));
+	ReactDOM.render(
+		<Provider store={store}>
+			<BrewKrew />
+		</Provider>,
+		document.getElementById('root')
+	);
 	Modal.setAppElement('#root');
 }
 

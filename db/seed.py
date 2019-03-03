@@ -57,7 +57,7 @@ def yelp(brewery):
 	try:
 		r = requests.get(url = URL, params = PARAMS, headers=HEADERS)
 		r.raise_for_status()
-	except requests.exceptions.RequestException as e:  # This is the correct syntax
+	except requests.exceptions.RequestException as e:
 		print('Error from yelp')
 
 	data = r.json()

@@ -13,7 +13,9 @@
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
-    "react-modal": "^3.4.4"
+    "react-modal": "^3.4.4",
+    "react-redux": "^6.0.1",
+    "redux": "^4.0.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -22,16 +24,32 @@
     "babel-preset-react": "^6.24.1",
     "eslint": "^4.19.1",
     "eslint-plugin-react": "^7.7.0",
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.5",
     "node-sass": "^4.9.0",
-    "parcel-bundler": "^1.9.3"
+    "parcel-bundler": "^1.9.3",
+    "prettier": "^1.16.4",
+    "sass": "^1.17.2"
   },
   "scripts": {
-    "copy-images" : "cp -r src/images dist/",
-    "clean" : "rm -rf ./dist/*",
+    "copy-images": "cp -r src/images dist/",
+    "clean": "rm -rf ./dist/*",
     "start": "npm run clean && npm run copy-images && parcel index.html -p 8080 --no-cache",
     "build": "npm run clean && npm run copy-images && parcel build index.html --out-dir dist/ --no-source-maps --no-cache",
     "sync": "npm run build && npm run syncAssets && npm run syncHTML",
-    "syncAssets" : "aws s3 sync ./dist s3://brewkrew.io/ --exclude *.html --exclude *.map --cache-control 'max-age=31536000, private'",
-    "syncHTML" : "aws s3 sync ./dist s3://brewkrew.io/ --exclude *.js.* --exclude *.css.* --cache-control 'no-cache' --delete"
+    "syncAssets": "aws s3 sync ./dist s3://brewkrew.io/ --exclude *.html --exclude *.map --cache-control 'max-age=31536000, private'",
+    "syncHTML": "aws s3 sync ./dist s3://brewkrew.io/ --exclude *.js.* --exclude *.css.* --cache-control 'no-cache' --delete",
+    "pretty": "prettier --config prettier.config.js --write \"./src/**/*.js\""
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run pretty && git add ."
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "",
+      "git add"
+    ]
   }
 }

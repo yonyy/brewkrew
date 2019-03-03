@@ -4,7 +4,12 @@ import BreweryCards from './BreweryCards';
 import SortBy from './SortBy';
 import Pagination from './Pagination';
 import Loading from './Loading';
-import { sortByAZ, sortByZA, sortByDistance, sortByRating } from './util/sortByMethods';
+import {
+	sortByAZ,
+	sortByZA,
+	sortByDistance,
+	sortByRating,
+} from './util/sortByMethods';
 
 class PaginationCards extends React.Component {
 	constructor(props) {
@@ -21,7 +26,7 @@ class PaginationCards extends React.Component {
 			id,
 			sortByMethod: sortByDistance,
 			loading: true,
-			slices: [[]]
+			slices: [[]],
 		};
 
 		this.sort();
@@ -40,7 +45,7 @@ class PaginationCards extends React.Component {
 				pageNumber: 0,
 				id: PaginationCards.generateID(nextProps.breweries),
 				loading: true,
-				slices: [[]]
+				slices: [[]],
 			};
 		}
 
@@ -54,38 +59,40 @@ class PaginationCards extends React.Component {
 	}
 
 	static mapFuncToString(func) {
-		switch(func) {
-		case sortByAZ:
-			return 'aZ';
-		case sortByZA:
-			return 'zA';
-		case sortByDistance:
-			return 'distance';
-		case sortByRating:
-			return 'rating';
+		switch (func) {
+			case sortByAZ:
+				return 'aZ';
+			case sortByZA:
+				return 'zA';
+			case sortByDistance:
+				return 'distance';
+			case sortByRating:
+				return 'rating';
 		}
 	}
 
 	static mapStringToFunc(key) {
-		switch(key) {
-		case 'aZ':
-			return sortByAZ;
-		case 'zA':
-			return sortByZA;
-		case 'distance':
-			return sortByDistance;
-		case 'rating':
-			return sortByRating;
+		switch (key) {
+			case 'aZ':
+				return sortByAZ;
+			case 'zA':
+				return sortByZA;
+			case 'distance':
+				return sortByDistance;
+			case 'rating':
+				return sortByRating;
 		}
 	}
 
 	sliceCards(arr) {
-		return arr.reduce((acc, curr, index) => {
-			if (index !== 0 && index % this.props.limit === 0)
-				acc.push([]);
-			acc[acc.length - 1].push(curr);
-			return acc;
-		}, [[]]);
+		return arr.reduce(
+			(acc, curr, index) => {
+				if (index !== 0 && index % this.props.limit === 0) acc.push([]);
+				acc[acc.length - 1].push(curr);
+				return acc;
+			},
+			[[]]
+		);
 	}
 
 	setPage(pageNumber) {
@@ -93,8 +100,7 @@ class PaginationCards extends React.Component {
 	}
 
 	backPage() {
-		if (this.state.pageNumber - 1 >= 0)
-			this.setPage(this.state.pageNumber - 1);
+		if (this.state.pageNumber - 1 >= 0) this.setPage(this.state.pageNumber - 1);
 	}
 
 	nextPage() {
@@ -117,14 +123,13 @@ class PaginationCards extends React.Component {
 	}
 
 	setSortMethod(method) {
-		if (method === this.state.sortByMethod)
-			return;
+		if (method === this.state.sortByMethod) return;
 
 		const sortByMethod = PaginationCards.mapStringToFunc(method);
 		this.setState({
 			sortByMethod,
 			loading: true,
-			slices: [[]]
+			slices: [[]],
 		});
 	}
 
@@ -134,10 +139,15 @@ class PaginationCards extends React.Component {
 		const length = this.state.slices.length;
 		return (
 			<React.Fragment>
-				<SortBy onSelect={this.setSortMethod} active={active}/>
+				<SortBy onSelect={this.setSortMethod} active={active} />
 				<Loading loading={this.state.loading}>
 					<BreweryCards breweries={page} />
-					<Pagination pageNumber={this.state.pageNumber} length={length} backPage={this.backPage} nextPage={this.nextPage} />
+					<Pagination
+						pageNumber={this.state.pageNumber}
+						length={length}
+						backPage={this.backPage}
+						nextPage={this.nextPage}
+					/>
 				</Loading>
 			</React.Fragment>
 		);
@@ -145,13 +155,15 @@ class PaginationCards extends React.Component {
 }
 
 PaginationCards.propTypes = {
-	breweries: PropTypes.arrayOf(PropTypes.shape({
-		label: PropTypes.string.isRequired,
-		address: PropTypes.string.isRequired,
-		visited: PropTypes.bool.isRequired,
-		yelp: PropTypes.object.isRequired
-	})),
-	limit: PropTypes.number.isRequired
+	breweries: PropTypes.arrayOf(
+		PropTypes.shape({
+			label: PropTypes.string.isRequired,
+			address: PropTypes.string.isRequired,
+			visited: PropTypes.bool.isRequired,
+			yelp: PropTypes.object.isRequired,
+		})
+	),
+	limit: PropTypes.number.isRequired,
 };
 
 export default PaginationCards;

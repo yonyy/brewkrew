@@ -1,52 +1,68 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import GoogleMarkers from './util/GoogleMarkers';
+import { connect } from 'react-redux';
+
+import GoogleMarker from './util/GoogleMarker';
 import styledMap from '../stylemap/stylemap';
 
-const STYLE_NAME = 'Brew Style';
-const CENTER_LAT_LONG = {lat: 32.8806222, lng: -117.1652732};
+const STYLE_NAME = 'Style';
+const CENTER_LAT_LONG = { lat: 32.8806222, lng: -117.1652732 };
 
 class Map extends React.Component {
 	constructor(props) {
 		super(props);
+
 		this.filterOutData = this.filterOutData.bind(this);
 		this.doubleClick = this.doubleClick.bind(this);
-		GoogleMarkers.setGoogleMapsClass(this.props.google.maps);
-		GoogleMarkers.setDoubleClick(this.doubleClick);
-		
+		this.initializeGoogleMap = this.initializeGoogleMap.bind(this);
+
+		this.googleMarker = null;
 	}
 
 	componentDidMount() {
-		const { Map, StyledMapType } = this.props.google.maps;
-		
-		const styledMapType = new StyledMapType(styledMap, {
-			name: STYLE_NAME
-		});
-
-		const node = ReactDOM.findDOMNode(this.mapRef);
-
-		this.map = new Map(node, {
-			center: CENTER_LAT_LONG,
-			zoom: 11,
-			mapTypeControlOptions: {
-				mapTypeIds: ['styled_map']
-			}
-		});
-
-		this.markers = new GoogleMarkers(this.props.data, this.map);
-		this.map.mapTypes.set('styled_map', styledMapType);
-		this.map.setMapTypeId('styled_map');
+		const { google } = this.props;
+		if (google) {
+			this.initializeGoogleMap();
+		}
 	}
 
 	componentDidUpdate() {
-		this.filterOutData();
+		const { google } = this.props;
+
+		if (!google) return;
+
+		if (this.googleMarker) this.filterOutData();
+		else {
+			this.initializeGoogleMap();
+		}
+	}
+
+	initializeGoogleMap() {
+		const { data, google } = this.props;
+
+		const googleMarker = new GoogleMarker(google);
+		googleMarker.setDoubleClick(this.doubleClick);
+
+		const node = ReactDOM.findDOMNode(this.mapRef);
+		googleMarker.createMap(node, {
+			center: CENTER_LAT_LONG,
+			zoom: 11,
+			mapStyles: {
+				styleName: STYLE_NAME,
+				mapStyleId: 'styled_map',
+				styledMap,
+			},
+		});
+
+		googleMarker.createMarkers(data);
+		this.googleMarker = googleMarker;
 	}
 
 	filterOutData() {
 		const points = this.props.points;
 		const indices = points.map(p => p.id);
-		this.markers.filterOutByIndices(indices);
+		this.googleMarker.filterOutByIndices(indices);
 	}
 
 	doubleClick(brewery) {
@@ -55,16 +71,20 @@ class Map extends React.Component {
 
 	render() {
 		return (
-			<div className='bk-map' id='map' ref={node => this.mapRef = node}></div>
+			<div className="bk-map" id="map" ref={node => (this.mapRef = node)} />
 		);
 	}
 }
+
+const mapStateToProps = ({ google }) => ({
+	google,
+});
 
 Map.propTypes = {
 	points: PropTypes.array.isRequired,
 	google: PropTypes.object,
 	data: PropTypes.array.isRequired,
-	doubleClick: PropTypes.func.isRequired
+	doubleClick: PropTypes.func.isRequired,
 };
 
-export default Map;
+export default connect(mapStateToProps)(Map);

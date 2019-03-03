@@ -7,17 +7,14 @@ class Yelp extends React.Component {
 	}
 
 	render() {
-		if (!this.props.card)
-			return null;
+		if (!this.props.card) return null;
 
-		return (
-			<div></div>
-		);
+		return <div />;
 	}
 }
 
 Yelp.propTypes = {
-	card: PropTypes.object
+	card: PropTypes.object,
 };
 
 export default Yelp;

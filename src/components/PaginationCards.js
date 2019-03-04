@@ -1,98 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { chunk } from 'lodash';
+import { connect } from 'react-redux';
+
 import BreweryCards from './BreweryCards';
-import SortBy from './SortBy';
+import PaginationControls from './PaginationControls';
 import Pagination from './Pagination';
 import Loading from './Loading';
-import {
-	sortByAZ,
-	sortByZA,
-	sortByDistance,
-	sortByRating,
-} from './util/sortByMethods';
+import controls, { defaultControl } from './util/paginationControls.js';
 
 class PaginationCards extends React.Component {
 	constructor(props) {
 		super(props);
-		this.sliceCards = this.sliceCards.bind(this);
+
 		this.backPage = this.backPage.bind(this);
 		this.nextPage = this.nextPage.bind(this);
-		this.setSortMethod = this.setSortMethod.bind(this);
-		this.sort = this.sort.bind(this);
-
-		const id = PaginationCards.generateID(this.props.breweries);
+		this.setActiveControl = this.setActiveControl.bind(this);
 		this.state = {
 			pageNumber: 0,
-			id,
-			sortByMethod: sortByDistance,
-			loading: true,
-			slices: [[]],
+			activeControl: defaultControl,
 		};
-
-		this.sort();
-	}
-
-	static generateID(arr) {
-		return arr.reduce((acc, el) => {
-			return acc + el.label;
-		}, '');
-	}
-
-	static getDerivedStateFromProps(nextProps, prevState) {
-		var nextID = PaginationCards.generateID(nextProps.breweries);
-		if (nextID !== prevState.id) {
-			return {
-				pageNumber: 0,
-				id: PaginationCards.generateID(nextProps.breweries),
-				loading: true,
-				slices: [[]],
-			};
-		}
-
-		return null;
-	}
-
-	componentDidUpdate() {
-		if (this.state.loading) {
-			this.sort();
-		}
-	}
-
-	static mapFuncToString(func) {
-		switch (func) {
-			case sortByAZ:
-				return 'aZ';
-			case sortByZA:
-				return 'zA';
-			case sortByDistance:
-				return 'distance';
-			case sortByRating:
-				return 'rating';
-		}
-	}
-
-	static mapStringToFunc(key) {
-		switch (key) {
-			case 'aZ':
-				return sortByAZ;
-			case 'zA':
-				return sortByZA;
-			case 'distance':
-				return sortByDistance;
-			case 'rating':
-				return sortByRating;
-		}
-	}
-
-	sliceCards(arr) {
-		return arr.reduce(
-			(acc, curr, index) => {
-				if (index !== 0 && index % this.props.limit === 0) acc.push([]);
-				acc[acc.length - 1].push(curr);
-				return acc;
-			},
-			[[]]
-		);
 	}
 
 	setPage(pageNumber) {
@@ -108,38 +35,27 @@ class PaginationCards extends React.Component {
 			this.setPage(this.state.pageNumber + 1);
 	}
 
-	sort() {
-		const { breweries } = this.props;
-		if (this.state.sortByMethod === sortByDistance) {
-			this.state.sortByMethod(breweries).then(b => {
-				const slices = this.sliceCards(b);
-				this.setState({ loading: false, slices });
-			});
-		} else {
-			const sorted = this.state.sortByMethod(breweries);
-			const slices = this.sliceCards(sorted);
-			this.setState({ loading: false, slices });
-		}
-	}
-
-	setSortMethod(method) {
-		if (method === this.state.sortByMethod) return;
-
-		const sortByMethod = PaginationCards.mapStringToFunc(method);
+	setActiveControl(activeControl) {
 		this.setState({
-			sortByMethod,
-			loading: true,
-			slices: [[]],
+			activeControl,
 		});
 	}
 
 	render() {
-		const active = PaginationCards.mapFuncToString(this.state.sortByMethod);
-		const page = this.state.slices[this.state.pageNumber];
-		const length = this.state.slices.length;
+		const { activeControl } = this.state;
+		const { breweries, position, limit } = this.props;
+		const sortedBreweries = activeControl.transform(breweries, position);
+		const slices = chunk(sortedBreweries, limit);
+		const page = slices[this.state.pageNumber];
+		const length = slices.length;
+
 		return (
 			<React.Fragment>
-				<SortBy onSelect={this.setSortMethod} active={active} />
+				<PaginationControls
+					activeControl={activeControl}
+					controls={controls}
+					onSelect={this.setActiveControl}
+				/>
 				<Loading loading={this.state.loading}>
 					<BreweryCards breweries={page} />
 					<Pagination
@@ -154,6 +70,10 @@ class PaginationCards extends React.Component {
 	}
 }
 
+const mapStateToProps = ({ position }) => ({
+	position,
+});
+
 PaginationCards.propTypes = {
 	breweries: PropTypes.arrayOf(
 		PropTypes.shape({
@@ -164,6 +84,7 @@ PaginationCards.propTypes = {
 		})
 	),
 	limit: PropTypes.number.isRequired,
+	position: PropTypes.object,
 };
 
-export default PaginationCards;
+export default connect(mapStateToProps)(PaginationCards);

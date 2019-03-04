@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
 import smoothScroll from './util/smoothScroll';
 import { throttle } from 'lodash';
 
@@ -55,6 +56,8 @@ class Menu extends React.PureComponent {
 
 	render() {
 		const bkNavClass = 'bk-nav' + (this.state.navOpen ? '' : ' bk-nav-hidden');
+		const themeClick = theme => () =>
+			this.props.dispatch({ type: 'SET_THEME', payload: { theme } });
 		return (
 			<div className="bk-nav-container">
 				<button
@@ -95,8 +98,13 @@ class Menu extends React.PureComponent {
 							</a>
 						</li>
 						<li className="bk-nav-list-item" role="menuitem">
-							<a className="bk-link" href="#">
+							<a className="bk-link" href="#" onClick={themeClick('bk-dark')}>
 								Dark
+							</a>
+						</li>
+						<li className="bk-nav-list-item" role="menuitem">
+							<a className="bk-link" href="#" onClick={themeClick('')}>
+								White
 							</a>
 						</li>
 					</ul>
@@ -106,4 +114,4 @@ class Menu extends React.PureComponent {
 	}
 }
 
-export default Menu;
+export default connect()(Menu);

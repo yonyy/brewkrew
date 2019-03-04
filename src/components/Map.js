@@ -22,9 +22,7 @@ class Map extends React.Component {
 
 	componentDidMount() {
 		const { google } = this.props;
-		if (google) {
-			this.initializeGoogleMap();
-		}
+		if (google) this.initializeGoogleMap();
 	}
 
 	componentDidUpdate() {
@@ -33,9 +31,7 @@ class Map extends React.Component {
 		if (!google) return;
 
 		if (this.googleMarker) this.filterOutData();
-		else {
-			this.initializeGoogleMap();
-		}
+		else this.initializeGoogleMap();
 	}
 
 	initializeGoogleMap() {

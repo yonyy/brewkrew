@@ -16,11 +16,11 @@ export function setTheme(theme) {
 	};
 }
 
-export function setLocation(location) {
+export function setPosition(position) {
 	return {
-		type: 'SET_LOCATION',
+		type: 'SET_POSITION',
 		payload: {
-			location,
+			position,
 		},
 	};
 }

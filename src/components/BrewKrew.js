@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import BrewKrewContainer from './BrewKrewContainer';
 import ErrorBoundary from './ErrorBoundary';
 import ThemeWrapper from './ThemeWrapper';
+import Position from './Position';
 
 import style from '../sass/main.scss';
 
@@ -48,26 +49,22 @@ class BrewKrewComponent extends React.PureComponent {
 		return (
 			<ErrorBoundary>
 				<ThemeWrapper>
-					<BrewKrewContainer />
+					<Position>
+						<BrewKrewContainer />
+					</Position>
 				</ThemeWrapper>
 			</ErrorBoundary>
 		);
 	}
 }
 
-const mapStateToProps = ({ google }) => {
-	return {
-		google,
-	};
-};
+const mapStateToProps = ({ google }) => ({
+	google,
+});
 
-const mapDispatchToProps = dispatch => {
-	return {
-		setGoogle: google => {
-			dispatch(setGoogle(google));
-		},
-	};
-};
+const mapDispatchToProps = dispatch => ({
+	setGoogle: google => dispatch(setGoogle(google)),
+});
 
 BrewKrewComponent.style = style;
 

@@ -1,7 +1,7 @@
 export const initialState = {
 	theme: '',
 	google: null,
-	location: null,
+	position: null,
 };
 
 export default function reducers(state = initialState, action) {
@@ -12,16 +12,23 @@ export default function reducers(state = initialState, action) {
 				...state,
 				theme: payload.theme,
 			};
-		case 'SET_LOCATION':
+		case 'SET_POSITION':
 			return {
 				...state,
-				location: payload.location,
+				position: payload.position,
 			};
 		case 'SET_GOOGLE':
 			return {
 				...state,
 				google: payload.google,
 			};
+
+		case 'SET_BREWERY_FILTER':
+			return {
+				...state,
+				filterFunction: payload.filterFunction,
+			};
+
 		default:
 			return state;
 	}

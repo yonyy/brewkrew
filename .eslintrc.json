@@ -37,6 +37,10 @@
             "error",
             "always"
         ],
+        "curly": [
+            "warn",
+            "multi"
+        ],
         "react/prop-types": [
             "warn"
         ],

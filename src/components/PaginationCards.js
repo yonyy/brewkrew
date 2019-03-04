@@ -30,9 +30,11 @@ class PaginationCards extends React.Component {
 		if (this.state.pageNumber - 1 >= 0) this.setPage(this.state.pageNumber - 1);
 	}
 
-	nextPage() {
-		if (this.state.pageNumber + 1 < this.state.slices.length)
-			this.setPage(this.state.pageNumber + 1);
+	nextPage(max) {
+		return () => {
+			if (this.state.pageNumber + 1 < max)
+				this.setPage(this.state.pageNumber + 1);
+		};
 	}
 
 	setActiveControl(activeControl) {
@@ -62,7 +64,7 @@ class PaginationCards extends React.Component {
 						pageNumber={this.state.pageNumber}
 						length={length}
 						backPage={this.backPage}
-						nextPage={this.nextPage}
+						nextPage={this.nextPage(slices.length)}
 					/>
 				</Loading>
 			</React.Fragment>

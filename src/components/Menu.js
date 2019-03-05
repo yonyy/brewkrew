@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { map } from 'lodash';
+import { map, throttle } from 'lodash';
 
 import smoothScroll from './util/smoothScroll';
 import defaultMenuItems from './util/menuItems';
@@ -43,7 +43,9 @@ class Menu extends React.PureComponent {
 	constructor(props) {
 		super(props);
 		this.state = { navOpen: false };
-		this.toggleNav = this.toggleNav.bind(this);
+		this.toggleNav = throttle(this.toggleNav.bind(this), 200, {
+			leading: false,
+		});
 		this.resetFocus = this.resetFocus.bind(this);
 		this.captureEsc = this.captureEsc.bind(this);
 	}
@@ -80,6 +82,7 @@ class Menu extends React.PureComponent {
 	}
 
 	render() {
+		const { navOpen } = this.state;
 		const { dispatch, menuItems } = this.props;
 		const bkNavClass = 'bk-nav' + (this.state.navOpen ? '' : ' bk-nav-hidden');
 
@@ -90,7 +93,7 @@ class Menu extends React.PureComponent {
 					aria-label="Menu"
 					aria-haspopup="true"
 					aria-controls="menuItems"
-					aria-expanded={this.state.navOpen}
+					aria-expanded={navOpen}
 					type="button"
 					ref={node => {
 						this.navButtonRef = node;

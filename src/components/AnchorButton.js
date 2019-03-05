@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import smoothScroll from './util/smoothScroll';
+import { smoothScrollById } from './util/smoothScroll';
 
 class AnchorButton extends React.PureComponent {
 	constructor(props) {
@@ -12,7 +12,7 @@ class AnchorButton extends React.PureComponent {
 
 	smoothScroll(evt) {
 		evt.preventDefault();
-		smoothScroll(this.target);
+		smoothScrollById(this.target);
 		this.setState({ reverse: !this.state.reverse });
 	}
 

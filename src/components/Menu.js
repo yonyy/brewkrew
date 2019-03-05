@@ -1,10 +1,43 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import smoothScroll from './util/smoothScroll';
-import { throttle } from 'lodash';
+import { map } from 'lodash';
 
+import smoothScroll from './util/smoothScroll';
+import defaultMenuItems from './util/menuItems';
+
+import { setTheme } from '../actions';
 const ESC = 'Escape';
+
+const getOnClick = (type, action, payload, dispatch) => {
+	if (type === 'link') return null;
+
+	if (type === 'scroll_dom') return smoothScroll;
+
+	if (action === 'SET_THEME') return () => dispatch(setTheme(payload));
+};
+
+const MenuItem = ({ menuItem, dispatch }) => {
+	const { type, icon, href, action, payload, text } = menuItem;
+
+	const onClick = getOnClick(type, action, payload, dispatch);
+	return (
+		<li role="menuitem" className="bk-nav-list-item">
+			<a href={href} className="bk-link" onClick={onClick}>
+				{text}
+				{icon ? (
+					<i aria-hidden="true" className={`bk-icon fas fa-${icon}`} />
+				) : null}
+			</a>
+		</li>
+	);
+};
+
+MenuItem.propTypes = {
+	menuItem: PropTypes.object.isRequired,
+	dispatch: PropTypes.func,
+};
 
 class Menu extends React.PureComponent {
 	constructor(props) {
@@ -13,8 +46,6 @@ class Menu extends React.PureComponent {
 		this.toggleNav = this.toggleNav.bind(this);
 		this.resetFocus = this.resetFocus.bind(this);
 		this.captureEsc = this.captureEsc.bind(this);
-		this.smoothScroll = this.smoothScroll.bind(this);
-		this.throttleOnClick = throttle(this.toggleNav, 100, { trailing: false });
 	}
 
 	componentDidUpdate() {
@@ -23,12 +54,12 @@ class Menu extends React.PureComponent {
 	}
 
 	addListeners() {
-		document.body.addEventListener('click', this.throttleOnClick, false);
+		document.body.addEventListener('click', this.toggleNav, false);
 		document.body.addEventListener('keyup', this.captureEsc, false);
 	}
 
 	removeListeners() {
-		document.body.removeEventListener('click', this.throttleOnClick);
+		document.body.removeEventListener('click', this.toggleNav);
 		document.body.removeEventListener('keyup', this.captureEsc);
 	}
 
@@ -48,16 +79,10 @@ class Menu extends React.PureComponent {
 		node.focus();
 	}
 
-	smoothScroll(evt) {
-		evt.preventDefault();
-		const target = evt.target.getAttribute('href').split('#')[1];
-		smoothScroll(target);
-	}
-
 	render() {
+		const { dispatch, menuItems } = this.props;
 		const bkNavClass = 'bk-nav' + (this.state.navOpen ? '' : ' bk-nav-hidden');
-		const themeClick = theme => () =>
-			this.props.dispatch({ type: 'SET_THEME', payload: { theme } });
+
 		return (
 			<div className="bk-nav-container">
 				<button
@@ -70,48 +95,30 @@ class Menu extends React.PureComponent {
 					ref={node => {
 						this.navButtonRef = node;
 					}}
-					onClick={this.throttleOnClick}
+					onClick={this.toggleNav}
 					className="bk-button bk-button-icon bk-nav-control"
 				>
 					<i aria-hidden="true" className="bk-icon fas fa-bars bk-icon" />
 				</button>
 				<nav className={bkNavClass} id="menuItems">
 					<ul className="bk-nav-list" role="menubar">
-						<li className="bk-nav-list-item" role="menuitem">
-							<a className="bk-link" href="#cards" onClick={this.smoothScroll}>
-								The Conquered
-							</a>
-						</li>
-						<li className="bk-nav-list-item" role="menuitem">
-							<a
-								className="bk-link"
-								href="#conquerors"
-								onClick={this.smoothScroll}
-							>
-								The Krew
-							</a>
-						</li>
-						<li className="bk-nav-list-item" role="menuitem">
-							<a className="bk-link" href="https://github.com/yonyy/brewkrew">
-								Curious?{' '}
-								<i aria-hidden="true" className="bk-icon fas fa-code" />
-							</a>
-						</li>
-						<li className="bk-nav-list-item" role="menuitem">
-							<a className="bk-link" href="#" onClick={themeClick('bk-dark')}>
-								Dark
-							</a>
-						</li>
-						<li className="bk-nav-list-item" role="menuitem">
-							<a className="bk-link" href="#" onClick={themeClick('')}>
-								White
-							</a>
-						</li>
+						{map(menuItems, (menuItem, index) => (
+							<MenuItem menuItem={menuItem} key={index} dispatch={dispatch} />
+						))}
 					</ul>
 				</nav>
 			</div>
 		);
 	}
 }
+
+Menu.propTypes = {
+	dispatch: PropTypes.func.isRequired,
+	menuItems: PropTypes.array.isRequired,
+};
+
+Menu.defaultProps = {
+	menuItems: defaultMenuItems,
+};
 
 export default connect()(Menu);

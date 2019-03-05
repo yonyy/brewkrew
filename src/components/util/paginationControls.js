@@ -7,6 +7,12 @@ import {
 
 const controls = [
 	{
+		icon: 'map-marker-alt',
+		transform: sortByDistance,
+		label: 'Sort by distance in descending order',
+		key: 'sort_by_distance',
+	},
+	{
 		icon: 'sort-alpha-down',
 		transform: sortByAZ,
 		label: 'Sort by label in descending order',
@@ -20,12 +26,6 @@ const controls = [
 		key: 'sort_by_label_asc',
 	},
 	{
-		icon: 'map-marker-alt',
-		transform: sortByDistance,
-		label: 'Sort by distance in descending order',
-		key: 'sort_by_distance',
-	},
-	{
 		icon: 'star',
 		transform: sortByRating,
 		label: 'Sort by rating in descending order',
@@ -33,6 +33,6 @@ const controls = [
 	},
 ];
 
-export const defaultControl = controls[2];
+export const defaultControl = controls[0];
 
 export default controls;

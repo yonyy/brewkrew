@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import GoogleMarker from './util/GoogleMarker';
-import styledMap from '../stylemap/stylemap';
+import styledMap from './util/stylemap';
 
 const STYLE_NAME = 'Style';
 const CENTER_LAT_LONG = { lat: 32.8806222, lng: -117.1652732 };

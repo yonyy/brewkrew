@@ -24,3 +24,12 @@ export function setPosition(position) {
 		},
 	};
 }
+
+export function setFiltering(text) {
+	return {
+		type: 'EXECUTE_SEARCH',
+		payload: {
+			text,
+		},
+	};
+}

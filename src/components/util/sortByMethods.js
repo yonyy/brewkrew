@@ -1,6 +1,5 @@
 import { chain, sortBy } from 'lodash';
 import distance from './distance';
-const MINUTES = 60000 * 10; // 10 minutes
 
 export function sortByAZ(breweries) {
 	return sortBy(breweries, brewery => {
@@ -17,12 +16,15 @@ export function sortByDistance(breweries, position) {
 
 	const { latitude, longitude } = position;
 	const sorted = sortBy(breweries, brewery => {
+		if (brewery.distance) return brewery.distance;
+
 		const d = distance(
 			latitude,
 			longitude,
 			brewery.coordinates.lat,
 			brewery.coordinates.lng
 		);
+
 		brewery.distance = d;
 		return d;
 	});

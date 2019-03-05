@@ -18,6 +18,14 @@ const PaginationControl = ({ label, onClick, icon, descending, active }) => {
 	);
 };
 
+PaginationControl.propTypes = {
+	label: PropTypes.string,
+	onClick: PropTypes.func,
+	icon: PropTypes.string,
+	descending: PropTypes.bool,
+	active: PropTypes.bool,
+};
+
 class PaginationControls extends React.Component {
 	constructor(props) {
 		super(props);

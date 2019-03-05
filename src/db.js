@@ -1,3 +1,3 @@
-import data from '../db/breweries';
+import breweries from '../db/breweries';
 
-export default data;
+export default breweries;

@@ -1,7 +1,17 @@
+import { map } from 'lodash';
+
+import breweries from '../db';
+
+import executeSearch from '../components/util/searchFunctions';
+import distance from '../components/util/distance';
+
 export const initialState = {
 	theme: '',
 	google: null,
 	position: null,
+	breweries,
+	filteredBreweries: breweries,
+	searchTerm: '',
 };
 
 export default function reducers(state = initialState, action) {
@@ -16,6 +26,7 @@ export default function reducers(state = initialState, action) {
 			return {
 				...state,
 				position: payload.position,
+				breweries: computeDistance(payload.position, state.breweries),
 			};
 		case 'SET_GOOGLE':
 			return {
@@ -23,13 +34,27 @@ export default function reducers(state = initialState, action) {
 				google: payload.google,
 			};
 
-		case 'SET_BREWERY_FILTER':
+		case 'EXECUTE_SEARCH':
 			return {
 				...state,
-				filterFunction: payload.filterFunction,
+				filteredBreweries: executeSearch(payload.text, state.breweries),
+				searchTerm: payload.text,
 			};
 
 		default:
 			return state;
 	}
 }
+
+const computeDistance = (position, breweries) => {
+	const { latitude, longitude } = position;
+	return map(breweries, brewery => ({
+		...brewery,
+		distance: distance(
+			latitude,
+			longitude,
+			brewery.coordinates.lat,
+			brewery.coordinates.lng
+		),
+	}));
+};

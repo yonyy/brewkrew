@@ -6,15 +6,16 @@ class Search extends React.PureComponent {
 		super(props);
 		this.state = { searchOpen: false };
 		this.toggleSearchField = this.toggleSearchField.bind(this);
-		this._onChange = this._onChange.bind(this);
+		this.onChange = this.onChange.bind(this);
 	}
 
 	toggleSearchField() {
 		this.setState({ searchOpen: !this.state.searchOpen });
 	}
 
-	_onChange(evt) {
-		this.props.onChange(evt.target.value);
+	onChange(evt) {
+		const value = evt.target.value;
+		this.props.onChange(value);
 	}
 
 	render() {
@@ -42,7 +43,7 @@ class Search extends React.PureComponent {
 					<input
 						id="brewerySearch"
 						tabIndex={tabIndex}
-						onChange={this._onChange}
+						onChange={this.onChange}
 						value={this.props.value}
 						className={bkSearchClass}
 						type="text"
@@ -56,8 +57,8 @@ class Search extends React.PureComponent {
 }
 
 Search.propTypes = {
-	value: PropTypes.string.isRequired,
 	onChange: PropTypes.func.isRequired,
+	value: PropTypes.string.isRequired,
 };
 
 export default Search;

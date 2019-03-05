@@ -14,7 +14,7 @@ const handlers = [
 		handler: (_, breweries) => filterVisited(false, breweries),
 	},
 	{
-		regex: /\*+/,
+		regex: /.+/,
 		handler: (text, breweries) => filterNames(text, breweries),
 	},
 ];

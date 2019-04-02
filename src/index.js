@@ -1,7 +1,6 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Modal from 'react-modal';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
@@ -21,7 +20,6 @@ function render() {
 		</Provider>,
 		document.getElementById('root')
 	);
-	Modal.setAppElement('#root');
 }
 
 document.addEventListener('DOMContentLoaded', render, false);

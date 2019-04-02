@@ -22,6 +22,7 @@ export default [
 		icon: null,
 		action: 'SET_THEME',
 		payload: 'bk-dark',
+		href: '#',
 		text: 'Dark',
 	},
 	{
@@ -29,6 +30,7 @@ export default [
 		icon: null,
 		action: 'SET_THEME',
 		payload: '',
+		href: '#',
 		text: 'Light',
 	},
 ];

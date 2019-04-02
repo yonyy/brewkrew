@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { map, throttle } from 'lodash';
+import { map } from 'lodash';
 
 import smoothScroll from './util/smoothScroll';
 import defaultMenuItems from './util/menuItems';
@@ -43,9 +43,9 @@ class Menu extends React.PureComponent {
 	constructor(props) {
 		super(props);
 		this.state = { navOpen: false };
-		this.toggleNav = throttle(this.toggleNav.bind(this), 200, {
-			leading: false,
-		});
+		this.toggledOff = false;
+		this.toggleNav = this.toggleNav.bind(this);
+		this.closeOnBlur = this.closeOnBlur.bind(this);
 		this.resetFocus = this.resetFocus.bind(this);
 		this.captureEsc = this.captureEsc.bind(this);
 	}
@@ -56,12 +56,12 @@ class Menu extends React.PureComponent {
 	}
 
 	addListeners() {
-		document.body.addEventListener('click', this.toggleNav, false);
+		document.body.addEventListener('click', this.closeOnBlur, false);
 		document.body.addEventListener('keyup', this.captureEsc, false);
 	}
 
 	removeListeners() {
-		document.body.removeEventListener('click', this.toggleNav);
+		document.body.removeEventListener('click', this.closeOnBlur);
 		document.body.removeEventListener('keyup', this.captureEsc);
 	}
 
@@ -70,6 +70,12 @@ class Menu extends React.PureComponent {
 
 		this.toggleNav(evt);
 		this.resetFocus();
+	}
+
+	closeOnBlur(evt) {
+		if (evt.target.matches('button#menu-toggle *')) return;
+
+		this.toggleNav();
 	}
 
 	toggleNav() {
@@ -98,6 +104,7 @@ class Menu extends React.PureComponent {
 					ref={node => {
 						this.navButtonRef = node;
 					}}
+					id="menu-toggle"
 					onClick={this.toggleNav}
 					className="bk-button bk-button-icon bk-nav-control"
 				>

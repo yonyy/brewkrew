@@ -6,9 +6,11 @@
 	justify-content: center;
 
 	.bk-conqueror-container {
-		width: 200px;
-		height: 200px;
+		width: auto;
+		height: auto;
 		display: flex;
+		flex-basis: 300px;
+		padding-bottom: 10px;
 		flex-direction: column;
 		justify-content: center;
 

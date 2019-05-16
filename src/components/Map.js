@@ -36,7 +36,7 @@ class Map extends React.Component {
 	}
 
 	initializeGoogleMap() {
-		const { data, google, theme } = this.props;
+		const { data, google } = this.props;
 
 		const googleMarker = new GoogleMarker(google);
 
@@ -49,7 +49,6 @@ class Map extends React.Component {
 			styledMaps,
 		});
 
-		googleMarker.setStyle(theme);
 		googleMarker.createMarkers(data);
 		this.googleMarker = googleMarker;
 	}
@@ -81,6 +80,7 @@ Map.propTypes = {
 	google: PropTypes.object,
 	data: PropTypes.array.isRequired,
 	doubleClick: PropTypes.func.isRequired,
+	theme: PropTypes.string,
 };
 
 export default connect(mapStateToProps)(Map);

@@ -2,12 +2,12 @@ const FONT_FAMILY = 'Lato, sans-serif';
 const FONT_WEIGHT = 'bold';
 
 class GoogleMarker {
-	constructor(google, style) {
+	constructor(google) {
 		this.google = google;
 		this.markers = [];
 		this.activeMarker = null;
 		this.map = null;
-		this.style = style;
+		this.style = '';
 	}
 
 	setDoubleClick(func) {
@@ -36,7 +36,7 @@ class GoogleMarker {
 		});
 
 		styleIds.map((id, index) => map.mapTypes.set(id, gStyles[index]));
-		map.setMapTypeId(styleIds[0]);
+		this.setStyle(styleIds[0]);
 		this.map = map;
 	}
 

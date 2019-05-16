@@ -6,7 +6,7 @@ import executeSearch from '../components/util/searchFunctions';
 import distance from '../components/util/distance';
 
 export const initialState = {
-	theme: '',
+	theme: 'bk-light',
 	google: null,
 	position: null,
 	breweries,

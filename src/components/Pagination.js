@@ -1,24 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { range } from 'lodash';
 
 const min = (num1, num2) => (num1 < num2 ? num1 : num2);
 const max = (num1, num2) => (num1 < num2 ? num2 : num1);
 
 const PageNumbers = ({ pageNumber, pagesTotal }) => {
 	const maxShow = 5;
-	const floor = Math.floor(pageNumber / maxShow);
-	const ceil =
-		maxShow * floor + maxShow < pagesTotal
-			? maxShow * floor + maxShow
+	const currentIter = Math.floor(pageNumber / maxShow);
+	const max =
+		maxShow * currentIter + maxShow < pagesTotal
+			? maxShow * currentIter + maxShow
 			: pagesTotal;
-	let range = [];
-	for (let number = maxShow * floor + 1; number <= ceil; number++) {
-		range.push(number);
-	}
+	const min = maxShow * currentIter + 1;
+	const pageNumbers = range(min, max + 1);
 
 	return (
 		<span>
-			{range.map(number => {
+			{pageNumbers.map(number => {
 				if (number - 1 === pageNumber)
 					return (
 						<span

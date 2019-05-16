@@ -2,11 +2,12 @@ const FONT_FAMILY = 'Lato, sans-serif';
 const FONT_WEIGHT = 'bold';
 
 class GoogleMarker {
-	constructor(google) {
+	constructor(google, style) {
 		this.google = google;
 		this.markers = [];
 		this.activeMarker = null;
 		this.map = null;
+		this.style = style;
 	}
 
 	setDoubleClick(func) {
@@ -17,23 +18,25 @@ class GoogleMarker {
 		if (!this.google) return;
 
 		const { Map, StyledMapType } = this.google.maps;
-		const { mapStyles, center, zoom } = opt;
-		const { styleName, mapStyleId, styledMap } = mapStyles;
+		const { styledMaps, center, zoom } = opt;
 
-		const styledMapType = new StyledMapType(styledMap, {
-			name: styleName,
+		const gStyles = styledMaps.map(({ name, styledMap }) => {
+			return new StyledMapType(styledMap, {
+				name,
+			});
 		});
 
+		const styleIds = styledMaps.map(({ id }) => id);
 		const map = new Map(node, {
 			center,
 			zoom,
 			mapTypeControlOptions: {
-				mapTypeIds: [mapStyleId],
+				mapTypeIds: styleIds,
 			},
 		});
 
-		map.mapTypes.set(mapStyleId, styledMapType);
-		map.setMapTypeId(mapStyleId);
+		styleIds.map((id, index) => map.mapTypes.set(id, gStyles[index]));
+		map.setMapTypeId(styleIds[0]);
 		this.map = map;
 	}
 
@@ -83,6 +86,7 @@ class GoogleMarker {
 			fontFamily: FONT_FAMILY,
 			fontWeight: FONT_WEIGHT,
 			fontSize: '18px',
+			color: this.style === 'light' ? 'black' : 'white',
 			text: label,
 		});
 		marker.setZIndex(100);
@@ -101,6 +105,12 @@ class GoogleMarker {
 			if (indices.indexOf(index) === -1) m.setMap(null);
 			else if (m.getMap() === null) m.setMap(this.map);
 		});
+	}
+
+	setStyle(style) {
+		if (!this.map) return;
+
+		this.map.setMapTypeId(style);
 	}
 }
 

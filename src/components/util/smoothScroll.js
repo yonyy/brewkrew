@@ -19,7 +19,6 @@ export const smoothScrollById = id => {
 };
 
 const smoothScroll = evt => {
-	evt.preventDefault();
 	const id = evt.target.getAttribute('href').split('#')[1];
 	smoothScrollById(id);
 };

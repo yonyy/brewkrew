@@ -43,7 +43,10 @@
 
 	.bk-sections-container {	
 		.bk-section:nth-child(2) {
-			height: 600px;
+			height: 700px;
+		}
+		.bk-section:last-child {
+			height: auto;
 		}
 	}
 
@@ -75,12 +78,14 @@
 
 	.bk-cards-container {
 		padding: 5px;
+		height: 600px;
+
 		.bk-cards-row {
 			padding: 5px;
+			grid-template-columns: repeat(2, 1fr);
+			grid-template-rows: repeat(5, 1fr);
+
 			.bk-card-container {
-				width: 50%;
-				height: 100px;
-	
 				.bk-card {
 					padding: 5px;
 					font-size: 0.5em;

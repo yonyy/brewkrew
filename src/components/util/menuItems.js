@@ -29,7 +29,7 @@ export default [
 		type: 'dispatch',
 		icon: null,
 		action: 'SET_THEME',
-		payload: '',
+		payload: 'bk-light',
 		href: '#',
 		text: 'Light',
 	},

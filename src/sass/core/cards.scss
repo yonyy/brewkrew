@@ -1,25 +1,24 @@
 .bk-cards-container {
 	display: flex;
+	height: 425px;
 
 	.bk-cards-row {
-		display: flex;
-		width: 100%;
-		flex-wrap: wrap;
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		grid-template-rows: repeat(2, 1fr);
 		padding: 10px;
 
 		.bk-card-container {
-			width: 20%;
-			height: 200px;
 			margin: 0;
 
 			.bk-card {
-				width: 100%;
 				outline: none;
 				border: none;
 				font-size: 1em;
 				padding: 10px;
 				height: 100%;
-				display: block;
+				display: flex;
+				flex-direction: column;
 				background: none;
 				cursor: pointer;
 				box-sizing: border-box;
@@ -34,7 +33,7 @@
 				}
 
 				.bk-card-info {
-					height: 80%;
+					flex-basis: 80%;
 					display: flex;
 					flex-direction: column;
 					justify-content: center;
@@ -53,7 +52,7 @@
 				}
 
 				.bk-card-status {
-					height: 20%;
+					flex-basis: 20%;
 					display: flex;
 					flex-direction: column;
 					justify-content: center;

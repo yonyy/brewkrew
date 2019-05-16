@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import GoogleMarker from './util/GoogleMarker';
-import styledMap from './util/stylemap';
+import styledMaps from './util/styledMaps';
 
-const STYLE_NAME = 'Style';
 const CENTER_LAT_LONG = { lat: 32.8806222, lng: -117.1652732 };
 
 class Map extends React.Component {
@@ -26,29 +25,28 @@ class Map extends React.Component {
 	}
 
 	componentDidUpdate() {
-		const { google } = this.props;
+		const { google, theme } = this.props;
 
 		if (!google) return;
 
 		if (this.googleMarker) this.filterOutData();
 		else this.initializeGoogleMap();
+
+		if (theme !== this.googleMarker.style) this.googleMarker.setStyle(theme);
 	}
 
 	initializeGoogleMap() {
 		const { data, google } = this.props;
 
 		const googleMarker = new GoogleMarker(google);
+
 		googleMarker.setDoubleClick(this.doubleClick);
 
 		const node = ReactDOM.findDOMNode(this.mapRef);
 		googleMarker.createMap(node, {
 			center: CENTER_LAT_LONG,
 			zoom: 11,
-			mapStyles: {
-				styleName: STYLE_NAME,
-				mapStyleId: 'styled_map',
-				styledMap,
-			},
+			styledMaps,
 		});
 
 		googleMarker.createMarkers(data);
@@ -72,8 +70,9 @@ class Map extends React.Component {
 	}
 }
 
-const mapStateToProps = ({ google }) => ({
+const mapStateToProps = ({ google, theme }) => ({
 	google,
+	theme,
 });
 
 Map.propTypes = {
@@ -81,6 +80,7 @@ Map.propTypes = {
 	google: PropTypes.object,
 	data: PropTypes.array.isRequired,
 	doubleClick: PropTypes.func.isRequired,
+	theme: PropTypes.string,
 };
 
 export default connect(mapStateToProps)(Map);

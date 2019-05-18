@@ -10,8 +10,7 @@ class AnchorButton extends React.PureComponent {
 		this.smoothScroll = this.smoothScroll.bind(this);
 	}
 
-	smoothScroll(evt) {
-		evt.preventDefault();
+	smoothScroll() {
 		smoothScrollById(this.target);
 		this.setState({ reverse: !this.state.reverse });
 	}

@@ -8,7 +8,7 @@ const getDuration = target => {
 };
 
 export const smoothScrollById = id => {
-	const position = document.getElementById(id).offsetTop - 75; // subtract absolute header;
+	const position = document.getElementById(id).offsetTop; // subtract absolute header;
 	const duration = getDuration(position); // miliseconds
 	$('html, body').animate(
 		{

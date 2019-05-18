@@ -26,7 +26,7 @@ class Location extends React.PureComponent {
 	}
 
 	errorHandler(e) {
-		console.log(`Error grabbing position: ${e}`); // eslint-disable-line
+		console.warn(`Error grabbing position: ${e.message}`); // eslint-disable-line
 	}
 
 	initPosition() {

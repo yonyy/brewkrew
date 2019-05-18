@@ -12,7 +12,7 @@ class HeaderContainer extends React.PureComponent {
 }
 
 HeaderContainer.propTypes = {
-	children: PropTypes.array,
+	children: PropTypes.array
 };
 
 export default HeaderContainer;

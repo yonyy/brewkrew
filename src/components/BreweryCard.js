@@ -64,8 +64,8 @@ BreweryCard.propTypes = {
 		label: PropTypes.string.isRequired,
 		address: PropTypes.string.isRequired,
 		visited: PropTypes.bool.isRequired,
-		yelp: PropTypes.object.isRequired,
-	}),
+		yelp: PropTypes.object.isRequired
+	})
 };
 
 export default BreweryCard;

@@ -46,7 +46,7 @@ class Map extends React.Component {
 		googleMarker.createMap(node, {
 			center: CENTER_LAT_LONG,
 			zoom: 11,
-			styledMaps,
+			styledMaps
 		});
 
 		googleMarker.createMarkers(data);
@@ -72,7 +72,7 @@ class Map extends React.Component {
 
 const mapStateToProps = ({ google, theme }) => ({
 	google,
-	theme,
+	theme
 });
 
 Map.propTypes = {
@@ -80,7 +80,7 @@ Map.propTypes = {
 	google: PropTypes.object,
 	data: PropTypes.array.isRequired,
 	doubleClick: PropTypes.func.isRequired,
-	theme: PropTypes.string,
+	theme: PropTypes.string
 };
 
 export default connect(mapStateToProps)(Map);

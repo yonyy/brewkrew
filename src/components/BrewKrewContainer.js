@@ -23,7 +23,7 @@ class BrewKrewContainer extends React.Component {
 			filteredBreweries,
 			breweries,
 			setFiltering,
-			searchTerm,
+			searchTerm
 		} = this.props;
 
 		return (
@@ -68,18 +68,18 @@ class BrewKrewContainer extends React.Component {
 const mapStateToProps = ({ breweries, filteredBreweries, searchTerm }) => ({
 	breweries,
 	filteredBreweries,
-	searchTerm,
+	searchTerm
 });
 
 const mapDispatchToProps = dispatch => ({
-	setFiltering: text => dispatch(setFiltering(text)),
+	setFiltering: text => dispatch(setFiltering(text))
 });
 
 BrewKrewContainer.propTypes = {
 	breweries: PropTypes.array,
 	filteredBreweries: PropTypes.array,
 	setFiltering: PropTypes.func,
-	searchTerm: PropTypes.string,
+	searchTerm: PropTypes.string
 };
 
 export default connect(

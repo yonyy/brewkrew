@@ -41,7 +41,7 @@ const PageNumbers = ({ pageNumber, pagesTotal }) => {
 
 PageNumbers.propTypes = {
 	pageNumber: PropTypes.number.isRequired,
-	pagesTotal: PropTypes.number.isRequired,
+	pagesTotal: PropTypes.number.isRequired
 };
 
 class Pagination extends React.Component {
@@ -115,7 +115,7 @@ Pagination.propTypes = {
 	pageNumber: PropTypes.number.isRequired,
 	length: PropTypes.number.isRequired,
 	nextPage: PropTypes.func.isRequired,
-	backPage: PropTypes.func.isRequired,
+	backPage: PropTypes.func.isRequired
 };
 
 export default Pagination;

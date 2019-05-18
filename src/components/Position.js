@@ -10,12 +10,12 @@ const getCurrentLocation = (callback, errorHandler) =>
 	navigator.geolocation.getCurrentPosition(callback, errorHandler, {
 		enableHighAccuracy: true,
 		timeout: MINUTE,
-		maximumAge: 5 * MINUTE,
+		maximumAge: 5 * MINUTE
 	});
 
 const watchPosition = (callback, errorHandler) =>
 	navigator.geolocation.watchPosition(callback, errorHandler, {
-		enableHighAccuracy: true,
+		enableHighAccuracy: true
 	});
 
 class Location extends React.PureComponent {
@@ -46,12 +46,12 @@ class Location extends React.PureComponent {
 }
 
 const mapDispatchToProps = dispatch => ({
-	setPosition: position => dispatch(setPosition(position)),
+	setPosition: position => dispatch(setPosition(position))
 });
 
 Location.propTypes = {
 	children: PropType.object,
-	setPosition: PropType.func.isRequired,
+	setPosition: PropType.func.isRequired
 };
 
 export default connect(

@@ -22,7 +22,7 @@ class ResetSearchButton extends React.PureComponent {
 }
 
 ResetSearchButton.propTypes = {
-	onClick: PropTypes.func.isRequired,
+	onClick: PropTypes.func.isRequired
 };
 
 export default ResetSearchButton;

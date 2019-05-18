@@ -10,12 +10,12 @@ class ThemeWrapper extends React.PureComponent {
 }
 
 const mapStateToProps = ({ theme }) => ({
-	theme,
+	theme
 });
 
 ThemeWrapper.propTypes = {
 	children: PropTypes.object,
-	theme: PropTypes.string,
+	theme: PropTypes.string
 };
 
 export default connect(mapStateToProps)(ThemeWrapper);

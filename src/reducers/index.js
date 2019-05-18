@@ -11,7 +11,7 @@ export const initialState = {
 	position: null,
 	breweries,
 	filteredBreweries: breweries,
-	searchTerm: '',
+	searchTerm: ''
 };
 
 export default function reducers(state = initialState, action) {
@@ -20,25 +20,25 @@ export default function reducers(state = initialState, action) {
 		case 'SET_THEME':
 			return {
 				...state,
-				theme: payload.theme,
+				theme: payload.theme
 			};
 		case 'SET_POSITION':
 			return {
 				...state,
 				position: payload.position,
-				breweries: computeDistance(payload.position, state.breweries),
+				breweries: computeDistance(payload.position, state.breweries)
 			};
 		case 'SET_GOOGLE':
 			return {
 				...state,
-				google: payload.google,
+				google: payload.google
 			};
 
 		case 'EXECUTE_SEARCH':
 			return {
 				...state,
 				filteredBreweries: executeSearch(payload.text, state.breweries),
-				searchTerm: payload.text,
+				searchTerm: payload.text
 			};
 
 		default:
@@ -55,6 +55,6 @@ const computeDistance = (position, breweries) => {
 			longitude,
 			brewery.coordinates.lat,
 			brewery.coordinates.lng
-		),
+		)
 	}));
 };

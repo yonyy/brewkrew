@@ -1,7 +1,7 @@
 {
 	"useTabs": true,
 	"singleQuote": true,
-	"trailingComma": "es5",
+	"trailingComma": "none",
 	"parser": "babel",
 	"endOfLine": "lf"
 }

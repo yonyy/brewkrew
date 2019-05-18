@@ -21,12 +21,12 @@ class Loading extends React.PureComponent {
 Loading.propTypes = {
 	loading: PropTypes.bool,
 	size: PropTypes.string,
-	children: PropTypes.array.isRequired,
+	children: PropTypes.array.isRequired
 };
 
 Loading.defaultProps = {
 	loading: false,
-	size: 'md',
+	size: 'md'
 };
 
 export default Loading;

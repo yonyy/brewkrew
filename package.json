@@ -31,7 +31,8 @@
     "build": "npm run clean && npm run copy-images && parcel build index.html --out-dir dist/ --no-source-maps --detailed-report",
     "sync": "npm run build && npm run syncAssets && npm run syncHTML",
     "syncAssets": "aws s3 sync ./dist s3://brewkrew.io/ --exclude *.html --exclude *.map --cache-control 'max-age=31536000, private'",
-    "syncHTML": "aws s3 sync ./dist s3://brewkrew.io/ --exclude *.js.* --exclude *.css.* --cache-control 'no-cache' --delete"
+    "syncHTML": "aws s3 sync ./dist s3://brewkrew.io/ --exclude *.js.* --exclude *.css.* --cache-control 'no-cache' --delete",
+    "pretty": "prettier --write '**/src/*.js'"
   },
   "husky": {
     "hooks": {

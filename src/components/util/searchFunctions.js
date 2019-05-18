@@ -3,20 +3,20 @@ import { filter } from 'lodash';
 const handlers = [
 	{
 		regex: /^:$/i,
-		handler: (_, b) => b,
+		handler: (_, b) => b
 	},
 	{
 		regex: /:visited/i,
-		handler: (_, breweries) => filterVisited(true, breweries),
+		handler: (_, breweries) => filterVisited(true, breweries)
 	},
 	{
 		regex: /:notvisited/i,
-		handler: (_, breweries) => filterVisited(false, breweries),
+		handler: (_, breweries) => filterVisited(false, breweries)
 	},
 	{
 		regex: /.+/,
-		handler: (text, breweries) => filterNames(text, breweries),
-	},
+		handler: (text, breweries) => filterNames(text, breweries)
+	}
 ];
 
 const getHandler = (text = '') => {

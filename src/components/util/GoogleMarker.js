@@ -22,7 +22,7 @@ class GoogleMarker {
 
 		const gStyles = styledMaps.map(({ name, styledMap }) => {
 			return new StyledMapType(styledMap, {
-				name,
+				name
 			});
 		});
 
@@ -31,8 +31,8 @@ class GoogleMarker {
 			center,
 			zoom,
 			mapTypeControlOptions: {
-				mapTypeIds: styleIds,
-			},
+				mapTypeIds: styleIds
+			}
 		});
 
 		styleIds.map((id, index) => map.mapTypes.set(id, gStyles[index]));
@@ -47,7 +47,7 @@ class GoogleMarker {
 		this.markers = points.map(point => {
 			const marker = new gM.google.maps.Marker({
 				position: point.coordinates,
-				animation: gM.google.maps.Animation.DROP,
+				animation: gM.google.maps.Animation.DROP
 			});
 
 			marker.addListener('click', function() {
@@ -87,7 +87,7 @@ class GoogleMarker {
 			fontWeight: FONT_WEIGHT,
 			fontSize: '18px',
 			color: this.style === 'bk-light' ? 'black' : 'white',
-			text: label,
+			text: label
 		});
 		marker.setZIndex(100);
 	}

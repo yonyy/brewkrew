@@ -23,7 +23,7 @@ PaginationControl.propTypes = {
 	onClick: PropTypes.func,
 	icon: PropTypes.string,
 	descending: PropTypes.bool,
-	active: PropTypes.bool,
+	active: PropTypes.bool
 };
 
 class PaginationControls extends React.Component {
@@ -57,7 +57,7 @@ class PaginationControls extends React.Component {
 PaginationControls.propTypes = {
 	controls: PropTypes.array.isRequired,
 	activeControl: PropTypes.object,
-	onSelect: PropTypes.func,
+	onSelect: PropTypes.func
 };
 
 export default PaginationControls;

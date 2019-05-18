@@ -12,7 +12,7 @@ export const smoothScrollById = id => {
 	const duration = getDuration(position); // miliseconds
 	$('html, body').animate(
 		{
-			scrollTop: position,
+			scrollTop: position
 		},
 		duration === 0 ? 500 : duration
 	);

@@ -3,19 +3,20 @@ export default [
 		type: 'scroll_dom',
 		icon: null,
 		href: '#cards',
-		text: 'The Conquered',
+		text: 'The Conquered'
 	},
 	{
 		type: 'scroll_dom',
 		icon: null,
 		href: '#conquerors',
-		text: 'The Conquerors',
+		text: 'The Conquerors'
 	},
 	{
 		type: 'link',
 		icon: 'code',
 		href: 'https://github.com/yonyy/brewkrew',
 		text: 'Curious?',
+		newWindow: true
 	},
 	{
 		type: 'dispatch',
@@ -23,7 +24,7 @@ export default [
 		action: 'SET_THEME',
 		payload: 'bk-dark',
 		href: '#',
-		text: 'Dark',
+		text: 'Dark'
 	},
 	{
 		type: 'dispatch',
@@ -31,6 +32,6 @@ export default [
 		action: 'SET_THEME',
 		payload: 'bk-light',
 		href: '#',
-		text: 'Light',
-	},
+		text: 'Light'
+	}
 ];

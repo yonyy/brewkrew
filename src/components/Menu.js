@@ -10,21 +10,32 @@ import defaultMenuItems from './util/menuItems';
 import { setTheme } from '../actions';
 const ESC = 'Escape';
 
+const getDispatchHandler = (action, payload, dispatch) => {
+	switch (action) {
+		case 'SET_THEME':
+			return dispatch(setTheme(payload));
+		default:
+			return () => {};
+	}
+};
+
 const getOnClick = (type, action, payload, dispatch) => {
 	if (type === 'link') return null;
 
 	if (type === 'scroll_dom') return smoothScroll;
 
-	if (action === 'SET_THEME') return () => dispatch(setTheme(payload));
+	if (type === 'dispatch')
+		return () => getDispatchHandler(action, payload, dispatch);
 };
 
 const MenuItem = ({ menuItem, dispatch }) => {
-	const { type, icon, href, action, payload, text } = menuItem;
+	const { type, icon, href, action, payload, text, newWindow } = menuItem;
 
 	const onClick = getOnClick(type, action, payload, dispatch);
+	const target = newWindow ? '_blank' : '_self';
 	return (
 		<li role="menuitem" className="bk-nav-list-item">
-			<a href={href} className="bk-link" onClick={onClick}>
+			<a href={href} className="bk-link" onClick={onClick} target={target}>
 				{text}
 				{icon ? (
 					<i aria-hidden="true" className={`bk-icon fas fa-${icon}`} />
@@ -36,7 +47,7 @@ const MenuItem = ({ menuItem, dispatch }) => {
 
 MenuItem.propTypes = {
 	menuItem: PropTypes.object.isRequired,
-	dispatch: PropTypes.func,
+	dispatch: PropTypes.func
 };
 
 class Menu extends React.PureComponent {
@@ -124,11 +135,11 @@ class Menu extends React.PureComponent {
 
 Menu.propTypes = {
 	dispatch: PropTypes.func.isRequired,
-	menuItems: PropTypes.array.isRequired,
+	menuItems: PropTypes.array.isRequired
 };
 
 Menu.defaultProps = {
-	menuItems: defaultMenuItems,
+	menuItems: defaultMenuItems
 };
 
 export default connect()(Menu);

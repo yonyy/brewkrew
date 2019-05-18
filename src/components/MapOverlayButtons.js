@@ -25,7 +25,7 @@ class MapOverLayButtons extends React.PureComponent {
 
 MapOverLayButtons.propTypes = {
 	resetSearch: PropTypes.func,
-	children: PropTypes.object,
+	children: PropTypes.object
 };
 
 export default MapOverLayButtons;

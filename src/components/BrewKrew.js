@@ -19,7 +19,7 @@ class BrewKrewComponent extends React.PureComponent {
 		this.clearGoogleInterval = this.clearGoogleInterval.bind(this);
 
 		const state = {
-			id: !google ? this.createGoogleInterval() : null,
+			id: !google ? this.createGoogleInterval() : null
 		};
 
 		this.state = state;
@@ -41,7 +41,7 @@ class BrewKrewComponent extends React.PureComponent {
 
 		clearInterval(this.state.id);
 		this.setState({
-			id: null,
+			id: null
 		});
 	}
 
@@ -59,18 +59,18 @@ class BrewKrewComponent extends React.PureComponent {
 }
 
 const mapStateToProps = ({ google }) => ({
-	google,
+	google
 });
 
 const mapDispatchToProps = dispatch => ({
-	setGoogle: google => dispatch(setGoogle(google)),
+	setGoogle: google => dispatch(setGoogle(google))
 });
 
 BrewKrewComponent.style = style;
 
 BrewKrewComponent.propTypes = {
 	google: PropTypes.object,
-	setGoogle: PropTypes.func.isRequired,
+	setGoogle: PropTypes.func.isRequired
 };
 
 const BrewKrew = connect(

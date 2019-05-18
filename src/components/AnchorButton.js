@@ -41,7 +41,7 @@ class AnchorButton extends React.PureComponent {
 AnchorButton.propTypes = {
 	targetDown: PropTypes.string.isRequired,
 	targetUp: PropTypes.string.isRequired,
-	children: PropTypes.object,
+	children: PropTypes.object
 };
 
 export default AnchorButton;

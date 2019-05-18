@@ -14,7 +14,7 @@ class Yelp extends React.Component {
 }
 
 Yelp.propTypes = {
-	card: PropTypes.object,
+	card: PropTypes.object
 };
 
 export default Yelp;

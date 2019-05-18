@@ -18,7 +18,7 @@ class PaginationCards extends React.Component {
 		this.setActiveControl = this.setActiveControl.bind(this);
 		this.state = {
 			pageNumber: 0,
-			activeControl: defaultControl,
+			activeControl: defaultControl
 		};
 	}
 
@@ -39,7 +39,7 @@ class PaginationCards extends React.Component {
 
 	setActiveControl(activeControl) {
 		this.setState({
-			activeControl,
+			activeControl
 		});
 	}
 
@@ -73,7 +73,7 @@ class PaginationCards extends React.Component {
 }
 
 const mapStateToProps = ({ position }) => ({
-	position,
+	position
 });
 
 PaginationCards.propTypes = {
@@ -82,11 +82,11 @@ PaginationCards.propTypes = {
 			label: PropTypes.string.isRequired,
 			address: PropTypes.string.isRequired,
 			visited: PropTypes.bool.isRequired,
-			yelp: PropTypes.object.isRequired,
+			yelp: PropTypes.object.isRequired
 		})
 	),
 	limit: PropTypes.number.isRequired,
-	position: PropTypes.object,
+	position: PropTypes.object
 };
 
 export default connect(mapStateToProps)(PaginationCards);

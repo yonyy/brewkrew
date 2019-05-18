@@ -16,7 +16,7 @@ const ConquerorImage = ({ url, initials }) => {
 
 ConquerorImage.propTypes = {
 	url: PropTypes.string,
-	initials: PropTypes.string,
+	initials: PropTypes.string
 };
 
 const Conqueror = ({ conqueror }) => {
@@ -42,7 +42,7 @@ const Conqueror = ({ conqueror }) => {
 };
 
 Conqueror.propTypes = {
-	conqueror: PropTypes.object.isRequired,
+	conqueror: PropTypes.object.isRequired
 };
 
 const Conquerors = () => {

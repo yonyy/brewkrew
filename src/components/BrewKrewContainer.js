@@ -23,7 +23,9 @@ class BrewKrewContainer extends React.Component {
 			filteredBreweries,
 			breweries,
 			setFiltering,
-			searchTerm
+			searchTerm,
+			google,
+			theme
 		} = this.props;
 
 		return (
@@ -43,21 +45,31 @@ class BrewKrewContainer extends React.Component {
 						</div>
 					</HeaderContainer>
 					<div className="bk-sections-container">
-						<div className="bk-section">
+						<section className="bk-section" aria-label="Map">
 							<MapOverlayButtons resetSearch={() => setFiltering('')}>
 								<Map
 									data={breweries}
 									points={filteredBreweries}
 									doubleClick={setFiltering}
+									google={google}
+									theme={theme}
 								/>
 							</MapOverlayButtons>
-						</div>
-						<div className="bk-section" id="cards">
+						</section>
+						<section
+							className="bk-section"
+							id="cards"
+							aria-label="Brewery Cards"
+						>
 							<PaginationCards limit={10} breweries={filteredBreweries} />
-						</div>
-						<div className="bk-section" id="conquerors">
+						</section>
+						<section
+							className="bk-section"
+							id="conquerors"
+							aria-label="Conquerors"
+						>
 							<Conquerors />
-						</div>
+						</section>
 					</div>
 				</div>
 			</ErrorBoundary>
@@ -65,10 +77,18 @@ class BrewKrewContainer extends React.Component {
 	}
 }
 
-const mapStateToProps = ({ breweries, filteredBreweries, searchTerm }) => ({
+const mapStateToProps = ({
 	breweries,
 	filteredBreweries,
-	searchTerm
+	searchTerm,
+	google,
+	theme
+}) => ({
+	breweries,
+	filteredBreweries,
+	searchTerm,
+	google,
+	theme
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -79,7 +99,9 @@ BrewKrewContainer.propTypes = {
 	breweries: PropTypes.array,
 	filteredBreweries: PropTypes.array,
 	setFiltering: PropTypes.func,
-	searchTerm: PropTypes.string
+	searchTerm: PropTypes.string,
+	google: PropTypes.object,
+	theme: PropTypes.string
 };
 
 export default connect(

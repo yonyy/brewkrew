@@ -10,12 +10,12 @@ import defaultMenuItems from './util/menuItems';
 import { setTheme } from '../actions';
 const ESC = 'Escape';
 
-const getDispatchHandler = (action, payload, dispatch) => {
+const getPayloadAndType = (action, payload) => {
 	switch (action) {
 		case 'SET_THEME':
-			return dispatch(setTheme(payload));
+			return setTheme(payload);
 		default:
-			return () => {};
+			return {};
 	}
 };
 
@@ -25,7 +25,7 @@ const getOnClick = (type, action, payload, dispatch) => {
 	if (type === 'scroll_dom') return smoothScroll;
 
 	if (type === 'dispatch')
-		return () => getDispatchHandler(action, payload, dispatch);
+		return () => dispatch(getPayloadAndType(action, payload));
 };
 
 const MenuItem = ({ menuItem, dispatch }) => {

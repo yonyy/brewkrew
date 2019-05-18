@@ -70,11 +70,6 @@ class Map extends React.Component {
 	}
 }
 
-const mapStateToProps = ({ google, theme }) => ({
-	google,
-	theme
-});
-
 Map.propTypes = {
 	points: PropTypes.array.isRequired,
 	google: PropTypes.object,
@@ -83,4 +78,4 @@ Map.propTypes = {
 	theme: PropTypes.string
 };
 
-export default connect(mapStateToProps)(Map);
+export default Map;

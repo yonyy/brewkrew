@@ -86,7 +86,7 @@ class GoogleMarker {
 			fontFamily: FONT_FAMILY,
 			fontWeight: FONT_WEIGHT,
 			fontSize: '18px',
-			color: this.style === 'light' ? 'black' : 'white',
+			color: this.style === 'bk-light' ? 'black' : 'white',
 			text: label,
 		});
 		marker.setZIndex(100);
@@ -110,6 +110,7 @@ class GoogleMarker {
 	setStyle(style) {
 		if (!this.map) return;
 
+		this.style = style;
 		this.map.setMapTypeId(style);
 	}
 }

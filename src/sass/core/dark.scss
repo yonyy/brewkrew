@@ -20,7 +20,7 @@ $focus-color: #00ffff;
 
 	.bk-search-container {
 		input.bk-search-field {
-			border-bottom: 1px solid $base-color;
+			border-bottom: 0.0625rem solid $base-color;
 			background-color: $base-background-color;
 
 			&:focus, &:active {

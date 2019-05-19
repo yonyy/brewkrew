@@ -1,5 +1,6 @@
 .bk-icon {
 	transition: transform 0.5s ease-in-out;
+	font-size: $bk-button-icon-font-size;
 
 	&.bk-icon-reverse {
 		transform: rotate(180deg);

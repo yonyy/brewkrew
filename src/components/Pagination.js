@@ -16,7 +16,7 @@ const PageNumbers = ({ pageNumber, pagesTotal }) => {
 	const pageNumbers = range(min, max + 1);
 
 	return (
-		<span>
+		<div>
 			{pageNumbers.map(number => {
 				if (number - 1 === pageNumber)
 					return (
@@ -35,7 +35,7 @@ const PageNumbers = ({ pageNumber, pagesTotal }) => {
 					</span>
 				);
 			})}
-		</span>
+		</div>
 	);
 };
 

@@ -1,5 +1,5 @@
 .bk-loading {
-	padding: 20px;
+	padding: 1.25rem;
 	text-align: center;
 	
 	i {
@@ -7,7 +7,7 @@
 	}
 
 	&.bk-loading-md {
-		font-size: 7.5em;
+		font-size: 7.5rem;
 	}
 }
 
@@ -20,33 +20,4 @@ html, body {
     padding: 0;
     overflow-y: scroll;
     height: 100%;
-}
-
-button, a, input {
-    outline: none;
-}
-
-a {
-    text-decoration: none;
-}
-
-h1, input, a, p {
-    text-transform: uppercase;
-}
-
-ul {
-    list-style: none;
-}
-
-h1 {
-    font-size: $h1-font-size;
-    letter-spacing: $h1-letter-spacing;
-}
-
-a, p, input {
-    font-size: $basic-text-font-size;
-}
-
-a, p {
-    letter-spacing: $text-letter-spacing;
 }

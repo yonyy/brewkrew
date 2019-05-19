@@ -38,7 +38,7 @@
 	}
 
 	+ .bk-sections-container {
-		top: $heading-container-height;;
+		top: $heading-container-height;
 	}
 }
 
@@ -48,8 +48,16 @@
 	display: flex;
 	flex-direction: column;
 
+	.bk-section:first-child {
+		margin-top: 0;
+		height: 35rem;
+	}
+
 	.bk-section {
+		margin-top: 1rem;
 		position: relative;
-		height: 525px;
+		min-height: 35rem;
+		display: flex;
+		flex-direction: column;
 	}
 }

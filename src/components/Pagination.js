@@ -12,11 +12,12 @@ const PageNumbers = ({ pageNumber, pagesTotal }) => {
 		maxShow * currentIter + maxShow < pagesTotal
 			? maxShow * currentIter + maxShow
 			: pagesTotal;
-	const min = maxShow * currentIter + 1;
+
+	const min = pagesTotal === 0 ? 0 : maxShow * currentIter + 1;
 	const pageNumbers = range(min, max + 1);
 
 	return (
-		<span>
+		<div>
 			{pageNumbers.map(number => {
 				if (number - 1 === pageNumber)
 					return (
@@ -35,7 +36,7 @@ const PageNumbers = ({ pageNumber, pagesTotal }) => {
 					</span>
 				);
 			})}
-		</span>
+		</div>
 	);
 };
 
@@ -50,10 +51,12 @@ class Pagination extends React.Component {
 	}
 
 	render() {
+		const { pageNumber, length, backPage, nextPage } = this.props;
 		const isDisabled = back => {
 			return (
-				(back && this.props.pageNumber === 0) ||
-				(!back && this.props.pageNumber === this.props.length - 1)
+				length === 0 ||
+				(back && pageNumber === 0) ||
+				(!back && pageNumber === length - 1)
 			);
 		};
 
@@ -62,8 +65,8 @@ class Pagination extends React.Component {
 			return baseClass;
 		};
 
-		const previousPageNum = max(this.props.pageNumber - 1, 0) + 1;
-		const nextPageNum = min(this.props.pageNumber + 1, this.props.length) + 1;
+		const previousPageNum = max(pageNumber - 1, 0) + 1;
+		const nextPageNum = min(pageNumber + 1, length) + 1;
 
 		const isBackDisabled = isDisabled(true);
 		const isForwardDisabled = isDisabled(false);
@@ -83,16 +86,13 @@ class Pagination extends React.Component {
 							aria-label={backLabel}
 							aria-disabled={isBackDisabled}
 							className={getClassName('bk-button bk-button-icon', true)}
-							onClick={this.props.backPage}
+							onClick={backPage}
 						>
 							<i aria-hidden="true" className="fas fa-chevron-left bk-icon" />
 						</button>
 					</div>
 					<div className="bk-control-pages" role="presentation">
-						<PageNumbers
-							pageNumber={this.props.pageNumber}
-							pagesTotal={this.props.length}
-						/>
+						<PageNumbers pageNumber={pageNumber} pagesTotal={length} />
 					</div>
 					<div className="bk-control-forward">
 						<button
@@ -100,7 +100,7 @@ class Pagination extends React.Component {
 							aria-label={forwardLabel}
 							aria-disabled={isForwardDisabled}
 							className={getClassName('bk-button bk-button-icon', false)}
-							onClick={this.props.nextPage}
+							onClick={nextPage}
 						>
 							<i aria-hidden="true" className="fas fa-chevron-right bk-icon" />
 						</button>

@@ -28,6 +28,10 @@ h1 {
     margin: 0;
 }
 
-a, p, input {
+a, p, input, span {
     font-size: $basic-text-font-size;
+}
+
+a, p {
+    letter-spacing: $text-letter-spacing;
 }

@@ -1,12 +1,25 @@
+.bk-sortby-buttons {
+	flex-grow: 0;
+    display: flex;
+	justify-content: center;
+	
+	.bk-sortby-button {
+		margin: 0 0.3125rem;
+	}
+}
+
+.bk-card-empty {
+	text-align: center;
+}
+
 .bk-cards-container {
 	display: flex;
-	height: 425px;
+	flex-grow: 2;
 
 	.bk-cards-row {
 		display: grid;
 		grid-template-columns: repeat(5, 1fr);
 		grid-template-rows: repeat(2, 1fr);
-		padding: 10px;
 
 		.bk-card-container {
 			margin: 0;
@@ -14,8 +27,7 @@
 			.bk-card {
 				outline: none;
 				border: none;
-				font-size: 1em;
-				padding: 10px;
+				padding: 0.625rem;
 				height: 100%;
 				display: flex;
 				flex-direction: column;
@@ -40,14 +52,14 @@
 
 					p {
 						margin-top: 0;
-						margin-bottom: 5px;
+						margin-bottom: 0.3125rem;
 						&:last-child {
 							margin-bottom: 0;
 						}
 					}
 
 					.bk-icon {
-						font-size: inherit;
+						font-size: 0.75rem;
 					}
 				}
 
@@ -56,10 +68,6 @@
 					display: flex;
 					flex-direction: column;
 					justify-content: center;
-
-					.bk-icon {
-						font-size: 2em;
-					}
 				}
 			}
 		}
@@ -67,37 +75,39 @@
 }
 
 .bk-pagination-controls-container {
+	flex-grow: 0;
+
 	.bk-pagination-controls {
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
 
 		.bk-control-back {
-			margin-right: 5px;
+			margin-right: 0.3125rem;
 		}
 
 		.bk-control-pages {
-			margin: 0px 5px 0px 5px;
+			margin: 0 0.3125rem 0 0.3125rem;
 			display: flex;
     		flex-direction: column;
     		justify-content: center;
-			height: 40px;
 			
-			span {
+			div {
 				text-align: center;
 				
 				span {
-					margin: 0px 10px 0px 10px;
-				}
+					margin: 0 0.625rem 0 0.625rem;
+					font-size: $bk-button-icon-font-size;
 
-				&.bk-control-page-active {
-					color: $focus-color;
+					&.bk-control-page-active {
+						color: $focus-color;
+					}
 				}
 			}
 		}
 
 		.bk-control-forward {
-			margin-left: 5px;
+			margin-left: 0.3125rem;
 		}
 	}
 }

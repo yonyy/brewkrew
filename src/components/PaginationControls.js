@@ -38,7 +38,7 @@ class PaginationControls extends React.Component {
 		};
 
 		return (
-			<div className="bk-sortby-buttons-container">
+			<div className="bk-sortby-buttons">
 				{map(controls, (control, index) => {
 					return (
 						<PaginationControl

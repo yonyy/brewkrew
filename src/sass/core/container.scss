@@ -54,10 +54,14 @@
 	}
 
 	.bk-section {
-		margin-top: 1rem;
+		margin-top: 0.3125rem;
 		position: relative;
 		min-height: 35rem;
 		display: flex;
 		flex-direction: column;
+
+		> div[class*="container"] {
+			padding: 0.625rem;
+		}
 	}
 }

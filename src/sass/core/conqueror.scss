@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: row;
 	flex-wrap: wrap;
-	padding: 1rem;
 	justify-content: center;
 	height: 100%;
 	flex-grow: 1;
@@ -25,18 +24,19 @@
 			.bk-conqueror-img {
 				display: flex;
 				justify-content: center;
+				flex-direction: column;
 				height: $conqueror-image-size;
 				width: $conqueror-image-size;
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
 				background-color: $base-hover-color;
 				border-radius: 6.25rem;
 				overflow: hidden;
 
 				.bk-conqueror-initials {
-					font-size: 0.75rem;
+					font-size: 1rem;
 					letter-spacing: 0rem;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					overflow: hidden;
 				}
 			}
 		}

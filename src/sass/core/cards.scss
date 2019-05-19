@@ -1,4 +1,4 @@
-.bk-sortby-buttons-container {
+.bk-sortby-buttons {
 	flex-grow: 0;
     display: flex;
 	justify-content: center;
@@ -10,7 +10,6 @@
 
 .bk-cards-container {
 	display: flex;
-	padding: 1rem;
 	flex-grow: 2;
 
 	.bk-cards-row {

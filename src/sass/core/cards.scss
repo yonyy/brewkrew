@@ -94,10 +94,10 @@
 				span {
 					margin: 0 0.625rem 0 0.625rem;
 					font-size: $bk-button-icon-font-size;
-				}
 
-				&.bk-control-page-active {
-					color: $focus-color;
+					&.bk-control-page-active {
+						color: $focus-color;
+					}
 				}
 			}
 		}

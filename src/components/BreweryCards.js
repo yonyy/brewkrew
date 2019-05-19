@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import BreweryCard from './BreweryCard';
 
-import { map } from 'lodash';
+import { map, isEmpty } from 'lodash';
 
 class BreweryCards extends React.Component {
 	constructor(props) {
@@ -11,6 +11,13 @@ class BreweryCards extends React.Component {
 
 	render() {
 		const { breweries } = this.props;
+		if (isEmpty(breweries))
+			return (
+				<div className="bk-card-empty">
+					<p>No matching breweries found</p>
+				</div>
+			);
+
 		return (
 			<div className="bk-cards-container">
 				<div className="bk-cards-row">

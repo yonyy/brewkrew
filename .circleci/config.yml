@@ -2,15 +2,12 @@ version: 2.1
 orbs:
   aws-s3: circleci/aws-s3@1.0.9
 executors:
-  node-python:
+  node:
     docker:
       - image: circleci/node:11.10.1
-        name: node
-      - image: circleci/python:2.7
-        name: python
 jobs:
   setup:
-    executor: node-python
+    executor: node
     steps:
       - checkout
       - run:
@@ -28,8 +25,11 @@ jobs:
           key: npm-dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
+      - run:
+          name: "Install pip"
+          command: apt install python-pip && pip -V
   test:
-    executor: node-python
+    executor: node
     steps:
       - checkout
       - restore_cache: # special step to restore the dependency cache
@@ -38,7 +38,7 @@ jobs:
           name: "Eslint"
           command: npm run test
   deploy2s3:
-    executor: node-python
+    executor: node
     steps:
       - checkout
       - restore_cache: # special step to restore the dependency cache

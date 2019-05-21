@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import conquerors from './util/conquerors';
 
 const ConquerorImage = ({ url, initials }) => {
-	if (!url) {
+	if (!url)
 		return (
 			<div className="bk-conqueror-img">
 				<p className={'bk-conqueror-initials'}>{initials}</p>
 			</div>
 		);
-	}
 
 	return <img className="bk-conqueror-img" src={url} />;
 };
@@ -25,6 +24,8 @@ const Conqueror = ({ conqueror }) => {
 			.split(' ')
 			.reduce((str, name) => str + name[0].toUpperCase(), '');
 	};
+
+	debugger;
 
 	return (
 		<div className="bk-conqueror-container">

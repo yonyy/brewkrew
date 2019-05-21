@@ -25,13 +25,12 @@
     "sass": "^1.20.1"
   },
   "scripts": {
-    "copy-images": "cp -r src/images dist/",
-    "clean": "rm -rf ./dist/*",
-    "start": "npm run clean && npm run copy-images && parcel index.html -p 8080 --open",
-    "build": "npm run clean && npm run copy-images && parcel build index.html --out-dir dist/ --no-source-maps --detailed-report",
+    "prebuild": "rm -rf ./dist/*",
+    "start": "npm run prebuild && parcel index.html -p 8080 --open",
+    "build": "npm run prebuild && parcel build index.html --out-dir dist/ --no-source-maps --detailed-report",
     "sync": "npm run build && npm run syncAssets && npm run syncHTML",
-    "syncAssets": "aws s3 sync ./dist s3://brewkrew.io/ --exclude *.html --exclude *.map --cache-control 'max-age=31536000, public'",
-    "syncHTML": "aws s3 sync ./dist s3://brewkrew.io/ --exclude *.js.* --exclude *.css.* --cache-control 'no-cache' --delete",
+    "syncAssets": "aws s3 sync ./dist s3://brewkrew.io/ --exclude *.html --cache-control 'max-age=31536000, public'",
+    "syncHTML": "aws s3 sync ./dist s3://brewkrew.io/ --exclude *.js --exclude *.css --cache-control 'no-cache' --delete",
     "pretty": "prettier --write '**/src/*.js'"
   },
   "husky": {

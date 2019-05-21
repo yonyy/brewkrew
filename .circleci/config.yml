@@ -1,6 +1,5 @@
 version: 2.1
 orbs:
-  aws-cli: circleci/aws-cli@0.1.13
   aws-s3: circleci/aws-s3@1.0.9
 executors:
   node:
@@ -36,12 +35,10 @@ jobs:
           name: "Eslint"
           command: npm run test
   deploy2s3:
-    executor: aws-cli/default
+    docker:
+      - image: circleci/python:2.7
     steps:
       - checkout
-      - aws-cli/install
-      - aws-cli/configure:
-          profile-name: circleci
       - restore_cache: # special step to restore the dependency cache
           key: npm-dependency-cache-{{ checksum "package.json" }}
       - run:

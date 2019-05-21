@@ -25,8 +25,8 @@ jobs:
     steps:
       - checkout
       - run:
-        name: "Eslint"
-        command: ./node_modules/.bin/eslint .
+          name: "Eslint"
+          command: ./node_modules/.bin/eslint .
   deploy2s3:
     executor: aws-cli/default
     steps:

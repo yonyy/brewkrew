@@ -25,9 +25,6 @@ jobs:
           key: npm-dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
-      - run:
-          name: "Install pip"
-          command: sudo apt-get update && sudo apt install python-pip && pip -V
   test:
     executor: node
     steps:
@@ -41,6 +38,9 @@ jobs:
     executor: node
     steps:
       - checkout
+      - run:
+          name: "Install pip"
+          command: sudo apt-get update && sudo apt install python-pip && pip -V
       - restore_cache: # special step to restore the dependency cache
           key: npm-dependency-cache-{{ checksum "package.json" }}
       - run:

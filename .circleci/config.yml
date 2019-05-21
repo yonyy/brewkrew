@@ -57,12 +57,12 @@ workflows:
   build-test-deploy:
     jobs:
       - setup
-      - test
-          requires: setup
-      - deploy2s3
+      - test:
+          requires:
+            - setup
+      - deploy2s3:
           filters:
             branches:
               only: master
           requires:
-            - setup
             - test

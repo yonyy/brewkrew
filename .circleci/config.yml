@@ -27,7 +27,7 @@ jobs:
             - ./node_modules
       - run:
           name: "Install pip"
-          command: apt install python-pip && pip -V
+          command: sudo apt install python-pip && pip -V
   test:
     executor: node
     steps:

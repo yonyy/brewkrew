@@ -17,13 +17,21 @@ jobs:
       - run:
           name: "NPM version"
           command: npm -v
+      - restore_cache: # special step to restore the dependency cache
+          key: npm-dependency-cache-{{ checksum "package.json" }}
       - run:
           name: "Install dependencies"
           command: npm install
+      - save_cache: # special step to save the dependency cache
+          key: npm-dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
   test:
     executor: node
     steps:
       - checkout
+      - restore_cache: # special step to restore the dependency cache
+          key: npm-dependency-cache-{{ checksum "package.json" }}
       - run:
           name: "Eslint"
           command: ./node_modules/.bin/eslint .
@@ -34,6 +42,8 @@ jobs:
       - aws-cli/install
       - aws-cli/configure:
           profile-name: circleci
+      - restore_cache: # special step to restore the dependency cache
+          key: npm-dependency-cache-{{ checksum "package.json" }}
       - run:
           name: "Build bundle"
           command: ./node_modules/.bin/parcel build index.html --out-dir dist/ --no-source-maps --detailed-report

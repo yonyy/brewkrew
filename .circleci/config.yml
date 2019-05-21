@@ -2,12 +2,13 @@ version: 2.1
 orbs:
   aws-s3: circleci/aws-s3@1.0.9
 executors:
-  node:
+  node-python:
     docker:
       - image: circleci/node:11.10.1
+      - image: circleci/python:2.7
 jobs:
   setup:
-    executor: node
+    executor: node-python
     steps:
       - checkout
       - run:
@@ -26,7 +27,7 @@ jobs:
           paths:
             - ./node_modules
   test:
-    executor: node
+    executor: node-python
     steps:
       - checkout
       - restore_cache: # special step to restore the dependency cache
@@ -35,9 +36,7 @@ jobs:
           name: "Eslint"
           command: npm run test
   deploy2s3:
-    docker:
-      - image: circleci/python:2.7
-      - image: circleci/node:11.10.1
+    executor: node-python
     steps:
       - checkout
       - restore_cache: # special step to restore the dependency cache

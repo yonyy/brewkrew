@@ -25,8 +25,6 @@ const Conqueror = ({ conqueror }) => {
 			.reduce((str, name) => str + name[0].toUpperCase(), '');
 	};
 
-	debugger;
-
 	return (
 		<div className="bk-conqueror-container">
 			<div className="bk-conqueror-img-container">

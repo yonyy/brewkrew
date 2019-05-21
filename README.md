@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/yonyy/brewkrew/tree/master.svg?style=svg)](https://circleci.com/gh/yonyy/brewkrew/tree/master)
+
 # Welcome
 - ## Brew Krew
 	- Just a group of friends conquering San Diego one brewery at a time

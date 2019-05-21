@@ -24,7 +24,12 @@ class BreweryCard extends React.PureComponent {
 
 		return (
 			<div className="bk-card-container">
-				<a target="_blank" href={href} className="bk-card">
+				<a
+					target="_blank"
+					rel="noreferrer noopener"
+					href={href}
+					className="bk-card"
+				>
 					<div className="bk-card-info">
 						<p>
 							<strong>{brewery.label}</strong>

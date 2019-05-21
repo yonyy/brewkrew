@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { map } from 'lodash';
@@ -94,8 +93,7 @@ class Menu extends React.PureComponent {
 	}
 
 	resetFocus() {
-		let node = ReactDOM.findDOMNode(this.navButtonRef);
-		node.focus();
+		this.navButtonRef.focus();
 	}
 
 	render() {
@@ -111,7 +109,6 @@ class Menu extends React.PureComponent {
 					aria-haspopup="true"
 					aria-controls="menuItems"
 					aria-expanded={navOpen}
-					type="button"
 					ref={node => {
 						this.navButtonRef = node;
 					}}
@@ -135,7 +132,7 @@ class Menu extends React.PureComponent {
 
 Menu.propTypes = {
 	dispatch: PropTypes.func.isRequired,
-	menuItems: PropTypes.array.isRequired
+	menuItems: PropTypes.array
 };
 
 Menu.defaultProps = {

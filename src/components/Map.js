@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
 import GoogleMarker from './util/GoogleMarker';
@@ -41,8 +40,7 @@ class Map extends React.Component {
 
 		googleMarker.setDoubleClick(this.doubleClick);
 
-		const node = ReactDOM.findDOMNode(this.mapRef);
-		googleMarker.createMap(node, {
+		googleMarker.createMap(this.mapRef, {
 			center: CENTER_LAT_LONG,
 			zoom: 11,
 			styledMaps

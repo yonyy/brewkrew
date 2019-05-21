@@ -35,7 +35,8 @@ jobs:
           name: "Eslint"
           command: npm run test
   deploy2s3:
-    executor: aws-cli/default
+    docker:
+      - image: circleci/python:2.7
     steps:
       - checkout
       - restore_cache: # special step to restore the dependency cache

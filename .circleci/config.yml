@@ -58,8 +58,7 @@ workflows:
     jobs:
       - setup
       - test
-          requires:
-            - setup
+          requires: setup
       - deploy2s3
           filters:
             branches:

@@ -42,7 +42,7 @@ jobs:
           arguments: |
             --exclude *.html \
             --cache-control 'max-age=31536000, public'
-        overwrite: true
+          overwrite: true
       # Sync html
       - aws-s3/sync:
           from: dist

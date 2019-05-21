@@ -19,15 +19,14 @@ jobs:
           command: npm -v
       - run:
           name: "Install dependencies"
-          command: |
-            npm install \
-            alias eslint=./node_modules/.bin/eslint \
-            alias parcel=./node_modules/.bin/parcel
+          command: npm install
   test:
     executor: node
     steps:
       - checkout
-      - run: npm test
+      - run:
+        name: "Eslint"
+        command: ./node_modules/.bin/eslint .
   deploy2s3:
     executor: aws-cli/default
     steps:
@@ -37,7 +36,7 @@ jobs:
           profile-name: circleci
       - run:
           name: "Build bundle"
-          command: parcel build index.html --out-dir dist/ --no-source-maps --detailed-report
+          command: ./node_modules/.bin/parcel build index.html --out-dir dist/ --no-source-maps --detailed-report
       # Sync assests
       - aws-s3/sync:
           from: dist

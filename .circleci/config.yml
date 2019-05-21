@@ -5,7 +5,9 @@ executors:
   node-python:
     docker:
       - image: circleci/node:11.10.1
+        name: node
       - image: circleci/python:2.7
+        name: python
 jobs:
   setup:
     executor: node-python

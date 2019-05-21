@@ -2,9 +2,9 @@ version: 2.1
 orbs:
 	aws-s3: circle/ci:aws-s3@1.0.0
 jobs:
-	build:
+	setup:
 		docker:
-			- image: circleci/node:11.11.0
+			- image: circleci/node:11.10.1
 		steps:
 			- checkout
 			- run:
@@ -16,12 +16,9 @@ jobs:
 			- run:
 					name: "Install dependencies"
 					command: npm install
-			- run:
-					name: "Build bundle"
-					command: parcel build index.html --out-dir dist/ --no-source-maps --detailed-report
 	test:
 		docker:
-			- image: circleci/node:11.11.0
+			- image: circleci/node:11.10.1
 		steps:
 			- checkout
 			- run: npm test
@@ -33,6 +30,9 @@ jobs:
 				- master
 		steps:
 			- checkout
+			- run:
+				name: "Build bundle"
+				command: parcel build index.html --out-dir dist/ --no-source-maps --detailed-report
 			# Sync assests
 			- aws-s3/sync:
 				from: dist
@@ -54,7 +54,7 @@ jobs:
 workflows:
 	build-test-deploy:
 		jobs:
-			- build
+			- setup
 			- test
 			- deploy2s3
 

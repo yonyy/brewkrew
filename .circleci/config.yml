@@ -1,0 +1,80 @@
+version: 2.1
+orbs:
+  aws-cli: circleci/aws-cli@0.1.13
+  aws-s3: circleci/aws-s3@1.0.9
+executors:
+  node:
+    docker:
+      - image: circleci/node:11.10.1
+jobs:
+  setup:
+    executor: node
+    steps:
+      - checkout
+      - run:
+          name: "Node version"
+          command: node -v
+      - run:
+          name: "NPM version"
+          command: npm -v
+      - restore_cache: # special step to restore the dependency cache
+          key: npm-dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: "Install dependencies"
+          command: npm install
+      - save_cache: # special step to save the dependency cache
+          key: npm-dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+  test:
+    executor: node
+    steps:
+      - checkout
+      - restore_cache: # special step to restore the dependency cache
+          key: npm-dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: "Eslint"
+          command: npm run test
+  deploy2s3:
+    executor: aws-cli/default
+    steps:
+      - checkout
+      - aws-cli/install
+      - aws-cli/configure:
+          profile-name: circleci
+      - restore_cache: # special step to restore the dependency cache
+          key: npm-dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: "Build bundle"
+          command: npm run build
+      # Sync assests
+      - aws-s3/sync:
+          from: dist
+          to: s3://brewkrew.io
+          arguments: |
+            --exclude *.html \
+            --cache-control 'max-age=31536000, public'
+          overwrite: true
+      # Sync html
+      - aws-s3/sync:
+          from: dist
+          to: s3://brewkrew.io
+          arguments: |
+            --exclude *.js \
+            --exclude *.css \
+            --exclude *.jpg \
+            --cache-control 'no-cache'
+          overwrite: true
+workflows:
+  build-test-deploy:
+    jobs:
+      - setup
+      - test:
+          requires:
+            - setup
+      - deploy2s3:
+          filters:
+            branches:
+              only: master
+          requires:
+            - test

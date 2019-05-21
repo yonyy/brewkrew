@@ -21,8 +21,8 @@ jobs:
           name: "Install dependencies"
           command: |
             npm install \
-            sudo npm install -g parcel-bundler@^1.12.3 \
-            sudo npm install -g eslint@^4.19.1
+            alias eslint=./node_modules/.bin/eslint
+            alias parcel=./node_modules/.bin/parcel
   test:
     executor: node
     steps:

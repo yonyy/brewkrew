@@ -1,0 +1,46 @@
+version: 2.1
+orbs:
+	aws-s3: circle/ci:aws-s3@1.0.0
+jobs:
+	build:
+		docker:
+			- image: circleci/node:11.11.0
+			- image: circleci/python:2.7
+		environment:
+			NODE_ENV: production
+		branches:
+			only:
+				- master
+		steps:
+			- checkout
+			- run:
+				name: "Node version"
+				command: echo node -v
+			- run:
+				name: "NPM version"
+				command: echo npm -v
+			- run:
+				name: "Install dependencies"
+				command: npm install
+			- run:
+				name: "Build bundle"
+				command: parcel build index.html --out-dir dist/ --no-source-maps --detailed-report
+			# Sync assests
+			- aws-s3/sync:
+				from: dist
+				to: s3://brewkrew.io
+				arguments: |
+					--exclude *.html \
+					--cache-control 'max-age=31536000, public'
+				overwrite: true
+			# Sync html
+			- aws-s3/sync:
+				from: dist
+				to: s3://brewkrew.io
+				arguments: |
+					--exclude *.js \
+					--exclude *.css \
+					--cache-control 'no-cache'
+				overwrite: true
+ 
+ 

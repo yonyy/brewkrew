@@ -1,10 +1,14 @@
 version: 2.1
 orbs:
+	aws-cli: circleci/aws-cli@0.1.13
 	aws-s3: circle/ci:aws-s3@1.0.0
-jobs:
-	setup:
+executors:
+	node:
 		docker:
 			- image: circleci/node:11.10.1
+jobs:
+	setup:
+		executor: node
 		steps:
 			- checkout
 			- run:
@@ -17,46 +21,52 @@ jobs:
 					name: "Install dependencies"
 					command: npm install
 	test:
-		docker:
-			- image: circleci/node:11.10.1
+		executor: node
 		steps:
 			- checkout
 			- run: npm test
 	deploy2s3:
-		docker:
-			- image: circleci/python:2.7
-		branches:
-			only:
-				- master
+    executor: aws-cli/default
 		steps:
 			- checkout
+      - aws-cli/install
+      - aws-cli/configure:
+          profile-name: circleci
 			- run:
-				name: "Build bundle"
-				command: parcel build index.html --out-dir dist/ --no-source-maps --detailed-report
+					name: "Build bundle"
+					command: parcel build index.html --out-dir dist/ --no-source-maps --detailed-report
 			# Sync assests
 			- aws-s3/sync:
-				from: dist
-				to: s3://brewkrew.io
-				arguments: |
-					--exclude *.html \
-					--cache-control 'max-age=31536000, public'
+					from: dist
+					to: s3://brewkrew.io
+					arguments: |
+						--exclude *.html \
+						--cache-control 'max-age=31536000, public'
 				overwrite: true
 			# Sync html
 			- aws-s3/sync:
-				from: dist
-				to: s3://brewkrew.io
-				arguments: |
-					--exclude *.js \
-					--exclude *.css \
-					--exclude *.jpg \
-					--cache-control 'no-cache'
-				overwrite: true
+					from: dist
+					to: s3://brewkrew.io
+					arguments: |
+						--exclude *.js \
+						--exclude *.css \
+						--exclude *.jpg \
+						--cache-control 'no-cache'
+					overwrite: true
 workflows:
 	build-test-deploy:
 		jobs:
 			- setup
 			- test
+					requires:
+						- setup
 			- deploy2s3
+					filters:
+						branches:
+							only: master
+					requires:
+						- setup
+						- test
 
 
  

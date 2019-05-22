@@ -10,12 +10,6 @@ jobs:
     executor: node
     steps:
       - checkout
-      - run:
-          name: "Node version"
-          command: node -v
-      - run:
-          name: "NPM version"
-          command: npm -v
       - restore_cache: # special step to restore the dependency cache
           key: npm-dependency-cache-{{ checksum "package.json" }}
       - run:
@@ -24,16 +18,14 @@ jobs:
       - save_cache: # special step to save the dependency cache
           key: npm-dependency-cache-{{ checksum "package.json" }}
           paths:
-            - ./node_modules
+            - node_modules
   test:
     executor: node
     steps:
       - checkout
-      - restore_cache: # special step to restore the dependency cache
-          key: npm-dependency-cache-{{ checksum "package.json" }}
       - run:
           name: "Eslint"
-          command: npm run test
+          command: npm test
   deploy2s3:
     executor: node
     steps:
@@ -41,8 +33,6 @@ jobs:
       - run:
           name: "Install pip"
           command: sudo apt-get update && sudo apt install python-pip && pip -V
-      - restore_cache: # special step to restore the dependency cache
-          key: npm-dependency-cache-{{ checksum "package.json" }}
       - run:
           name: "Build bundle"
           command: npm run build

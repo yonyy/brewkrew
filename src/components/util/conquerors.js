@@ -36,7 +36,7 @@ export default [
 		backgroundUrl: rose
 	},
 	{
-		name: 'Yoni Perez',
+		name: 'Yony Perez',
 		backgroundUrl: yony
 	}
 ];

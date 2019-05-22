@@ -1,6 +1,7 @@
 .bk-container {
 	display: flex;
 	flex-direction: column;
+	background-color: var(--main-bg-color);
 }
 
 .bk-heading-container {
@@ -9,7 +10,7 @@
 	position: fixed;
 	top: 0;
 	z-index: 2;
-	background-color: $base-background-color;
+	background-color: var(--main-bg-color);
 
 	.bk-heading {
 		display: flex;
@@ -59,6 +60,7 @@
 		min-height: 35rem;
 		display: flex;
 		flex-direction: column;
+		background-color: var(--main-bg-color);
 
 		> div[class*="container"] {
 			padding: 0.625rem;

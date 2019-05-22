@@ -38,9 +38,9 @@
 				transition: all .3s ease;
 
 				&:hover, &:focus, &:active {
-					background-color: $base-hover-color;
+					background-color: var(--main-hover-color);
 					.bk-icon, p, strong {
-						color: $focus-color;
+						color: var(--main-focus-color);
 					}
 				}
 
@@ -100,7 +100,7 @@
 					font-size: $bk-button-icon-font-size;
 
 					&.bk-control-page-active {
-						color: $focus-color;
+						color: var(--main-focus-color);
 					}
 				}
 			}

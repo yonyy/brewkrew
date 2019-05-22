@@ -7,7 +7,7 @@
 	transition: all .3s ease;
 
 	&:hover, &:focus, &:active {
-		background-color: $base-hover-color;
+		background-color: var(--main-hover-color);
 	}
 }
 
@@ -20,13 +20,13 @@
 
 	&.bk-active, &:hover, &:focus, &:active {
 		.bk-icon {
-			color: $focus-color;
+			color: var(--main-focus-color);
 		}
 	}
 	
 	&.bk-button-disabled {
 		.bk-icon {
-			color: $button-disabled-color;
+			color: var(--button-disabled-color);
 		}
 	}
 }
@@ -41,7 +41,7 @@
 
 	.bk-down-link {
 		border-radius: 3.125rem;
-		background-color: $base-background-color;
+		background-color: var(--main-bg-color);
 		justify-content: center;
 		flex-direction: row;
 		display: flex;	
@@ -65,12 +65,12 @@
 	height: $button-icon-size;
     width: 8rem;
     background-color: transparent;
-    border: 0.0625rem solid $focus-color;
+    border: 0.0625rem solid var(--main-focus-color);
 	border-radius: 0.3125rem;
 	transition: all .3s ease;
 
 	&:hover, &:active, &:focus {
-		background-color: $focus-color;
-		color: $base-background-color;
+		background-color: var(--main-focus-color);
+		color: var(--main-bg-color);
 	}
 }

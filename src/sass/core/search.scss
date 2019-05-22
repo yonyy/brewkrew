@@ -8,8 +8,8 @@
 			padding: 0;
 			margin: 0.625rem 0 0.625rem 0.3125rem;
 			width: $search-field-width;
-			border-bottom: 0.0625rem solid $base-color;
-			background-color: $base-background-color;
+			border-bottom: 0.0625rem solid var(--main-color);
+			background-color: var(--main-bg-color);
 
 			&.bk-search-expand-animation {
 				width: 0;
@@ -21,8 +21,8 @@
 			}
 
 			&:focus, &:active {
-				background-color: $base-hover-color;
-				border-bottom-color: $focus-color;
+				background-color: var(--main-hover-color);
+				border-bottom-color: var(--main-focus-color);
 			}
 		}
 	}
@@ -45,7 +45,7 @@
 				transition: all .3s ease;
 
 				&:hover {
-					background-color: $base-hover-color;
+					background-color: var(--main-hover-color);
 				}
 
 				.bk-search-result-container {

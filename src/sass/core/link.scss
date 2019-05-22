@@ -1,10 +1,10 @@
 .bk-link {
-	color: $base-color;
+	color: var(--main-color);
 	cursor: pointer;
 	transition: all .3s ease;
 
 	&:hover, &:focus, &:active {
-		color: $focus-color;
+		color: var(--main-focus-color);
 
 		.bk-icon {
 			color: inherit;

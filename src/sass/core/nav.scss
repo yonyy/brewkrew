@@ -15,7 +15,7 @@
 			.bk-nav-list {
 				display: flex;
 				flex-direction: column;
-				background-color: $base-background-color;
+				background-color: var(--main-bg-color);
 				padding: 0;
 				width: $bk-nav-list-width;
 				box-shadow: 0 0.0625rem 2px rgba(0,0,0,0.15);

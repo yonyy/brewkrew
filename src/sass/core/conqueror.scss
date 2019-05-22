@@ -27,7 +27,7 @@
 				flex-direction: column;
 				height: $conqueror-image-size;
 				width: $conqueror-image-size;
-				background-color: $base-hover-color;
+				background-color: var(--main-hover-color);
 				border-radius: 6.25rem;
 				overflow: hidden;
 

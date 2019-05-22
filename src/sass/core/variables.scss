@@ -1,11 +1,21 @@
-$base-hover-color: rgba(#cacaca, 0.25);
-$base-color: #212121;
-$focus-color: #0070F0;
+/* CSS Variables */
+:root {
+	--main-bg-color: #fdfdfd;
+	--main-hover-color: rgba(202, 202, 202, 0.25);
+	--main-color: #212121;
+	--main-focus-color: #0070F0;
+	--main-border-color: #dadada;
+	--button-disabled-color: rgba(33, 33, 33, 0.23);
+}
 
-$border-color: #dadada;
-$base-background-color: #fdfdfd;
-$button-disabled-color: rgba(#212121, 0.23);
+.bk-dark {
+	--main-color: #eaeaea;
+	--main-bg-color: #2e2e2e;
+	--button-disabled-color: rgba(255, 255, 255, 0.23);
+	--main-focus-color: #00ffff;
+}
 
+/* Sass Variables */
 $button-icon-size: 2.5rem;
 $button-border-radius: 1.25rem;
 $search-field-width: 15.625rem;

@@ -18,8 +18,23 @@ class PaginationCards extends React.Component {
 		this.setActiveControl = this.setActiveControl.bind(this);
 		this.state = {
 			pageNumber: 0,
-			activeControl: defaultControl
+			activeControl: defaultControl,
+			breweriesId: PaginationCards.getBreweriesId(this.props.breweries)
 		};
+	}
+
+	static getDerivedStateFromProps(props, state) {
+		const newBreweriesId = PaginationCards.getBreweriesId(props.breweries);
+		if (newBreweriesId !== state.breweriesId)
+			return {
+				pageNumber: 0,
+				breweriesId: newBreweriesId
+			};
+		return null;
+	}
+
+	static getBreweriesId(breweries) {
+		return breweries.reduce((acc, curr) => acc + curr, '');
 	}
 
 	setPage(pageNumber) {

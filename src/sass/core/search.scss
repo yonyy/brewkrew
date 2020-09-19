@@ -6,9 +6,9 @@
 		input.bk-search-field {
 			border: none;
 			padding: 0;
-			margin: 0.625rem 0 0.625rem 0.3125rem;
+			margin: $global-space--xs 0 $global-space--xs $global-space--xxs;
 			width: $search-field-width;
-			border-bottom: 0.0625rem solid var(--main-color);
+			border-bottom: 1px solid var(--main-color);
 			background-color: var(--main-bg-color);
 
 			&.bk-search-expand-animation {
@@ -36,12 +36,12 @@
 		box-shadow: 0 0.0625rem 2px rgba(0,0,0,0.15);
 
 		.bk-search-results {
-			padding: 0.625rem;
+			padding: $global-space--xs;
 			margin: 0;
 			background-color: #fdfdfd;
 
 			.bk-search-result {
-				padding: 0.625rem 0.625rem 0 0.625rem;
+				padding: $global-space--xs $global-space--xs 0 $global-space--xs;
 				transition: all .3s ease;
 
 				&:hover {
@@ -49,10 +49,10 @@
 				}
 
 				.bk-search-result-container {
-					padding-bottom: 0.625rem;
+					padding-bottom: $global-space--xs;
 		
 					p {
-						margin: 0.3125rem;
+						margin: $global-space--xxs;
 
 						&:last-child {
 							opacity: .75;

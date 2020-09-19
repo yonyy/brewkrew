@@ -23,15 +23,10 @@ ul {
 }
 
 h1 {
-    font-size: $h1-font-size;
-    letter-spacing: $h1-letter-spacing;
+    font-size: $global-font-size--xxl;
     margin: 0;
 }
 
 a, p, input, span {
-    font-size: $basic-text-font-size;
-}
-
-a, p {
-    letter-spacing: $text-letter-spacing;
+    font-size: $global-font-size--sm;
 }

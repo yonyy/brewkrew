@@ -3,7 +3,7 @@
 	border: none;
 	padding: 0;
 	margin: 0;
-	border-radius: $button-border-radius;
+	border-radius: $global-border-radius--md;
 	transition: all .3s ease;
 
 	&:hover, &:focus, &:active {
@@ -12,9 +12,9 @@
 }
 
 .bk-button-icon {
-	font-size: $bk-button-icon-font-size;
-	width: $button-icon-size;
-	height: $button-icon-size;
+	font-size: $global-font-size--lg;
+	width: $global-dim-size--sm;
+	height: $global-dim-size--sm;
 	cursor: pointer;
 	transition: all .3s ease;
 
@@ -62,10 +62,10 @@
 }
 
 .bk-action-button {
-	height: $button-icon-size;
-    width: 8rem;
+	height: $global-dim-size--sm;
+    //width: 8rem;
     background-color: transparent;
-    border: 0.0625rem solid var(--main-focus-color);
+    border: 1px solid var(--main-focus-color);
 	border-radius: 0.3125rem;
 	transition: all .3s ease;
 

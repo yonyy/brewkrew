@@ -4,7 +4,7 @@
 	justify-content: center;
 	
 	.bk-sortby-button {
-		margin: 0 0.3125rem;
+		margin: 0 $global-space--xs;
 	}
 }
 
@@ -27,7 +27,7 @@
 			.bk-card {
 				outline: none;
 				border: none;
-				padding: 0.625rem;
+				padding: $global-space--xs;
 				height: 100%;
 				display: flex;
 				flex-direction: column;
@@ -52,14 +52,14 @@
 
 					p {
 						margin-top: 0;
-						margin-bottom: 0.3125rem;
+						margin-bottom: $global-space--xs;
 						&:last-child {
 							margin-bottom: 0;
 						}
 					}
 
 					.bk-icon {
-						font-size: 0.75rem;
+						font-size: $global-font-size--sm;
 					}
 				}
 
@@ -83,11 +83,11 @@
 		justify-content: center;
 
 		.bk-control-back {
-			margin-right: 0.3125rem;
+			margin-right: $global-space--xs;
 		}
 
 		.bk-control-pages {
-			margin: 0 0.3125rem 0 0.3125rem;
+			margin: 0 $global-space--xs 0 $global-space--xs;
 			display: flex;
     		flex-direction: column;
     		justify-content: center;
@@ -96,8 +96,8 @@
 				text-align: center;
 				
 				span {
-					margin: 0 0.625rem 0 0.625rem;
-					font-size: $bk-button-icon-font-size;
+					margin: 0 $global-space--xs 0 $global-space--xs;
+					font-size: $global-font-size--lg;
 
 					&.bk-control-page-active {
 						color: var(--main-focus-color);
@@ -107,7 +107,7 @@
 		}
 
 		.bk-control-forward {
-			margin-left: 0.3125rem;
+			margin-left: $global-space--xs;
 		}
 	}
 }

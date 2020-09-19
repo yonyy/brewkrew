@@ -28,12 +28,11 @@
 				height: $conqueror-image-size;
 				width: $conqueror-image-size;
 				background-color: var(--main-hover-color);
-				border-radius: 6.25rem;
+				border-radius: $global-border-radius--xxl;
 				overflow: hidden;
 
 				.bk-conqueror-initials {
-					font-size: 1rem;
-					letter-spacing: 0rem;
+					font-size: $global-font-size--md;
 					text-overflow: ellipsis;
 					white-space: nowrap;
 					overflow: hidden;
@@ -45,7 +44,7 @@
 			text-align: center;
 			
 			p {
-				font-size: 0.75rem;
+				font-size: $global-font-size--sm;
 			}
 		}
 	}

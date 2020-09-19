@@ -6,11 +6,11 @@
 
 .bk-heading-container {
 	width: 100%;
-	height: $heading-container-height;
-	position: fixed;
+	position: sticky;
 	top: 0;
-	z-index: 2;
 	background-color: var(--main-bg-color);
+	padding: $global-space--sm 0;
+	z-index: 1;
 
 	.bk-heading {
 		display: flex;
@@ -19,27 +19,19 @@
 
 		.bk-heading-item {
 			flex-grow: 1;
-			flex-basis: 0;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
 
 			&:first-child {
-				margin: $heading-item-first;
+				margin: 0 0 0 $global-font-size--xxl;
 			}
 
 			&:last-child {
-				margin: $heading-item-second;
+				margin: 0 $global-font-size--xxl 0 0;
 			}
 
 			.bk-header {
 				text-align: center;
 			}
 		}
-	}
-
-	+ .bk-sections-container {
-		top: $heading-container-height;
 	}
 }
 
@@ -55,7 +47,6 @@
 	}
 
 	.bk-section {
-		margin-top: 0.3125rem;
 		position: relative;
 		min-height: 35rem;
 		display: flex;
@@ -63,7 +54,7 @@
 		background-color: var(--main-bg-color);
 
 		> div[class*="container"] {
-			padding: 0.625rem;
+			padding: $global-space--xs;
 		}
 	}
 }

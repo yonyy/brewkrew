@@ -16,22 +16,37 @@
 }
 
 /* Sass Variables */
-$button-icon-size: 2.5rem;
-$button-border-radius: 1.25rem;
+$global-space--xxs: 0.25rem;
+$global-space--xs: 0.50rem;
+$global-space--sm: 0.75rem;
+$global-space--md: 1rem;
+$global-space--lg: 1.25rem;
+$global-space--xl: 1.5rem;
+$global-space--xxl: 1.75rem;
+
+$global-font-size--xxs: 0.25rem;
+$global-font-size--xs: 0.50rem;
+$global-font-size--sm: 0.75rem;
+$global-font-size--md: 1rem;
+$global-font-size--lg: 1.25rem;
+$global-font-size--xl: 1.50rem;
+$global-font-size--xxl: 1.75rem;
+
+$global-font-family: 'NotoSans', sans-serif;
+
+$global-dim-size--xxs: 1.5rem;
+$global-dim-size--xs: 2rem;
+$global-dim-size--sm: 2.5rem;
+$global-dim-size--md: 3rem;
+$global-dim-size--lg: 3.5rem;
+$global-dim-size--xl: 4rem;
+$global-dim-size--lg: 4.5rem;
+
+$global-border-radius--md: 1.25rem;
+$global-border-radius--xxl: 6.25rem;
+
 $search-field-width: 15.625rem;
 $conqueror-image-size: 6.25rem;
 
-
-$h1-font-size: 2rem;
-$h1-letter-spacing: 1rem;
-
-$basic-text-font-size: 0.75rem;
-
-$text-letter-spacing: 0.1875rem;
-
-$heading-item-first: 0 0 0 1.875rem;
-$heading-item-second: 0 1.875rem 0 0;
-
 $heading-container-height: 4.6875rem;
-$bk-button-icon-font-size: 1.25rem;
 $bk-nav-list-width: 15.625rem;

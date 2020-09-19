@@ -17,12 +17,10 @@
 				flex-direction: column;
 				background-color: var(--main-bg-color);
 				padding: 0;
-				width: $bk-nav-list-width;
-				box-shadow: 0 0.0625rem 2px rgba(0,0,0,0.15);
+				box-shadow: 0 $global-space--xxs 2px rgba(0,0,0,0.15);
 				margin: 0;
 			
 				.bk-nav-list-item {
-					height: 2.1875rem;
 					display: flex;
 
 					&:last-child {
@@ -30,11 +28,12 @@
 					}
 
 					a {
-						padding: 0.625rem;
+						padding: $global-space--xs $global-space--lg $global-space--xs;
+						white-space: nowrap;
 						width: 100%;
 
 						.bk-icon {
-							font-size: $basic-text-font-size;
+							font-size: $global-font-size--sm;
 						}
 					}
 				}

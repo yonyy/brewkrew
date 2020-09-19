@@ -16,7 +16,7 @@
 @media all and (max-width: 480px) {
 	.bk-search-container .bk-search-field-container input.bk-search-field {
 		width: 6.25rem;
-		margin: 0 0 0 0.3125rem;
+		margin: 0 0 0 $global-space--xxs;
 
 		&.bk-search-expanded {
 			width: 6.25rem;
@@ -24,11 +24,7 @@
 	}
 	
 	h1 {
-		font-size: 1.5rem;
-	}
-
-	a, p {
-		letter-spacing: 0.15rem;
+		font-size: $global-font-size--xl;
 	}
 
 	.bk-sections-container {	
@@ -41,11 +37,11 @@
 		.bk-heading {
 			.bk-heading-item {
 				&:first-child {
-					margin: 0 0 0 0.625rem
+					margin: 0 0 0 $global-space--xs;
 				}
 	
 				&:last-child {
-					margin: 0 0.625rem 0 0;
+					margin: 0 $global-space--xs 0 0;
 				}
 			}
 		}
@@ -64,9 +60,9 @@
 
 			.bk-conqueror-img-container {
 				.bk-conqueror-img {
-					height: 3.125rem;
-					width: 3.125rem;
-					border-radius: 1.5625rem;
+					height: $global-dim-size--lg;
+					width: $global-dim-size--lg;
+
 				}
 			}
 		}

@@ -51,7 +51,7 @@ jobs:
     executor: node
     steps:
       - attach_workspace:
-        at: /temp
+          at: /temp
       # Sync assests
       - aws-s3/sync:
           from: dist

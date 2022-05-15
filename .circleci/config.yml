@@ -40,7 +40,7 @@ jobs:
       - checkout
       - run:
           name: "Install pip"
-          command: sudo apt-get update && sudo apt install python-pip && pip -V
+          command: sudo apt-get update && sudo apt install python3-pip && pip -V
       - restore_cache: # special step to restore the dependency cache
           key: npm-dependency-cache-{{ checksum "package.json" }}
       - run:

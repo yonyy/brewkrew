@@ -1,0 +1,11 @@
+node_modules/
+.vscode
+**/.DS_Store
+**/*.map
+**/.cache
+db/client_secret.json
+db/credentials.json
+db/api-key.json
+db/breweries.csv
+dist
+**/.parcel-cache

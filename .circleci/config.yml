@@ -42,6 +42,10 @@ jobs:
           key: npm-dependency-cache-{{ checksum "package.json" }}
           name: "Build bundle"
           command: npm run build && ls
+      - persist_to_workspace:
+          root: .
+          paths:
+            - dist
       # Sync assests
       - aws-s3/sync:
           from: dist

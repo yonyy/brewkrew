@@ -55,7 +55,6 @@ jobs:
           arguments: |
             --exclude *.html \
             --cache-control 'max-age=31536000, public' \
-          overwrite: true
       # Sync html
       - aws-s3/sync:
           from: dist
@@ -65,7 +64,6 @@ jobs:
             --exclude *.css \
             --exclude *.jpg \
             --cache-control 'no-cache' \
-          overwrite: true
 workflows:
   build-test-deploy:
     jobs:

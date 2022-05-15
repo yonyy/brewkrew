@@ -5,7 +5,6 @@ executors:
   node:
     docker:
       - image: cimg/python:3.10.4-node
-    working_directory: /tmp
 jobs:
   setup:
     executor: node
@@ -51,7 +50,7 @@ jobs:
     executor: node
     steps:
       - attach_workspace:
-          at: /temp
+          at: ./
       # Sync assests
       - aws-s3/sync:
           from: dist

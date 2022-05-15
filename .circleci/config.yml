@@ -16,12 +16,6 @@ jobs:
       - run:
           name: "NPM version"
           command: npm -v
-      - run:
-          name: "Python version"
-          command: python -v
-      - run:
-          name: "Pip version"
-          command: pip -V
       - restore_cache: # special step to restore the dependency cache
           key: npm-dependency-cache-{{ checksum "package.json" }}
       - run:

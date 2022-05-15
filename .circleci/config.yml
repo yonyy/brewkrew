@@ -41,6 +41,9 @@ jobs:
       - restore_cache: # special step to restore the dependency cache
           key: npm-dependency-cache-{{ checksum "package.json" }}
       - run:
+          name: "Rebuild"
+          command: npm rebuild
+      - run:
           name: "Build bundle"
           command: npm run build
       - persist_to_workspace:

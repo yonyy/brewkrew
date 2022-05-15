@@ -40,6 +40,7 @@ jobs:
       - checkout
       - restore_cache: # special step to restore the dependency cache
           key: npm-dependency-cache-{{ checksum "package.json" }}
+      - run:
           name: "Build bundle"
           command: npm run build
       - persist_to_workspace:
@@ -49,6 +50,7 @@ jobs:
   deploy2s3:
     executor: node
     steps:
+      - checkout
       - attach_workspace:
           at: ./
       # Sync assests

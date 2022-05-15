@@ -49,6 +49,7 @@ jobs:
           arguments: |
             --exclude *.html \
             --cache-control 'max-age=31536000, public' \
+            --delete
       # Sync html
       - aws-s3/sync:
           from: dist
@@ -58,6 +59,7 @@ jobs:
             --exclude *.css \
             --exclude *.jpg \
             --cache-control 'no-cache' \
+            --delete
 workflows:
   build-test-deploy:
     jobs:

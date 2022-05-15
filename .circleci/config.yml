@@ -41,7 +41,7 @@ jobs:
       - restore_cache: # special step to restore the dependency cache
           key: npm-dependency-cache-{{ checksum "package.json" }}
           name: "Build bundle"
-          command: npm run build
+          command: npm run build && ls
       # Sync assests
       - aws-s3/sync:
           from: dist

@@ -1,10 +1,10 @@
 version: 2.1
 orbs:
-  aws-s3: circleci/aws-s3@1.0.9
+  aws-s3: circleci/aws-s3@3.0
 executors:
   node:
     docker:
-      - image: cimg/node:16.15.0
+      - image: cimg/python:3.10.4-node
 jobs:
   setup:
     executor: node
@@ -16,6 +16,12 @@ jobs:
       - run:
           name: "NPM version"
           command: npm -v
+      - run:
+          name: "Python version"
+          command: python -v
+      - run:
+          name: "Pip version"
+          command: pip -V
       - restore_cache: # special step to restore the dependency cache
           key: npm-dependency-cache-{{ checksum "package.json" }}
       - run:
@@ -38,12 +44,8 @@ jobs:
     executor: node
     steps:
       - checkout
-      - run:
-          name: "Install pip"
-          command: sudo apt-get update && sudo apt install python3-pip && pip -V
       - restore_cache: # special step to restore the dependency cache
           key: npm-dependency-cache-{{ checksum "package.json" }}
-      - run:
           name: "Build bundle"
           command: npm run build
       # Sync assests
